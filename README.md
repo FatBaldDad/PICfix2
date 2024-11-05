@@ -11,9 +11,9 @@ The picfix was created by the Matrix team for Ps2 v12 slims back in the day.
 Thanks to the research done by HaloSlayer225 on the obscuregamers forums a couple years ago, we were able to install these in v9 and v10 consoles as well. 
 Sony created an issue with the v9-v12 ps2s. In order to combat modchips, they made it so if the console detects a burned disc the mechacon will crash resulting in the consoles laser burning out. 
 The problem is that even a scratched disc can trigger the mechacon crash resulting in many dead lasers for vanilla ps2 users also. 
-What the picfix does is detects a crash and forces the ps2 into standbye mode therefore preserving the consoles laser. 
-While the needed resistor value needed can vary from console to console, generally a v9 uses 2k or 2.2k and v10-v12 uses 1.5k. 
-This board was created by Helder Game Tech and myself to make a single board for all 3 revisions. Helder makes a ton of awesome boards, check out his shop here 
+What the picfix does is detects a crash and forces the ps2 into standby mode therefore preserving the consoles laser. 
+While the needed resistor value can vary from console to console, generally a v9 uses 2k or 2.2k and v10-v12 uses 1.5k. 
+This board was created by Helder Game Tech and Modzvilleusa to make a single board for all 3 revisions. Helder makes a ton of awesome boards, check out his shop here 
 https://heldergametech.com/
 
 
