@@ -13,6 +13,9 @@ Sony created an issue with the v9-v12 ps2s. In order to combat modchips, they ma
 The problem is that even a scratched disc can trigger the mechacon crash resulting in many dead lasers for vanilla ps2 users also. 
 What the picfix does is detects a crash and forces the ps2 into standbye mode therefore preserving the consoles laser. 
 While the needed resistor value needed can vary from console to console, generally a v9 uses 2k or 2.2k and v10-v12 uses 1.5k. 
+This board was created by Helder Game Tech and myself to make a single board for all 3 revisions. Helder makes a ton of awesome boards, check out his shop here 
+https://heldergametech.com/
+
 
 **How to build**
 Program the pic chip with the picfix hex file and assemble the board.
