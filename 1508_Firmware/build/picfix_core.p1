@@ -1,0 +1,152 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"14 I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_core.c
+[c E30 0 1 2 .. ]
+[n E30 . STATE_STARTUP STATE_MONITORING STATE_TRIGGERED  ]
+"61 I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware/picfix_common.h
+[v _picfix_handle_startup `(v ~T0 @X0 0 ef ]
+"62
+[v _picfix_handle_monitoring `(v ~T0 @X0 0 ef ]
+"63
+[v _picfix_handle_triggered `(v ~T0 @X0 0 ef ]
+"51
+[v _picfix_startup_indicate `(v ~T0 @X0 0 ef ]
+"52
+[v _picfix_monitor_indicate `(v ~T0 @X0 0 ef ]
+"55
+[v _picfix_read_signal `(uc ~T0 @X0 0 ef ]
+"53
+[v _picfix_error_indicate `(v ~T0 @X0 0 ef ]
+"54
+[v _picfix_activate_reset `(v ~T0 @X0 0 ef ]
+"57
+[v _picfix_watchdog_clear `(v ~T0 @X0 0 ef ]
+"12 I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_core.c
+[v _system_timer_ms `Vus ~T0 @X0 1 e ]
+[i _system_timer_ms
+-> -> 0 `i `us
+]
+"13
+[v _error_timer_ms `Vus ~T0 @X0 1 e ]
+[i _error_timer_ms
+-> -> 0 `i `us
+]
+"14
+[v _current_state `VE30 ~T0 @X0 1 e ]
+[i _current_state
+. `E30 0
+]
+"19
+[v _picfix_core_update `(v ~T0 @X0 1 ef ]
+{
+[e :U _picfix_core_update ]
+[f ]
+"20
+[e $U 3  ]
+{
+"21
+[e :U 4 ]
+"22
+[e ( _picfix_handle_startup ..  ]
+"23
+[e $U 2  ]
+"25
+[e :U 5 ]
+"26
+[e ( _picfix_handle_monitoring ..  ]
+"27
+[e $U 2  ]
+"29
+[e :U 6 ]
+"30
+[e ( _picfix_handle_triggered ..  ]
+"31
+[e $U 2  ]
+"32
+}
+[e $U 2  ]
+[e :U 3 ]
+[e [\ -> _current_state `ui , $ -> . `E30 0 `ui 4
+ , $ -> . `E30 1 `ui 5
+ , $ -> . `E30 2 `ui 6
+ 2 ]
+[e :U 2 ]
+"33
+[e :UE 1 ]
+}
+"41
+[v _picfix_handle_startup `(v ~T0 @X0 1 ef ]
+{
+[e :U _picfix_handle_startup ]
+[f ]
+"43
+[e ( _picfix_startup_indicate ..  ]
+"46
+[e $ ! >= -> _system_timer_ms `ui -> -> 2000 `i `ui 8  ]
+{
+"47
+[e = _current_state . `E30 1 ]
+"48
+[e = _error_timer_ms -> -> 0 `i `us ]
+"49
+}
+[e :U 8 ]
+"50
+[e :UE 7 ]
+}
+"58
+[v _picfix_handle_monitoring `(v ~T0 @X0 1 ef ]
+{
+[e :U _picfix_handle_monitoring ]
+[f ]
+"60
+[e ( _picfix_monitor_indicate ..  ]
+"67
+[e $ ! == -> ( _picfix_read_signal ..  `i -> 0 `i 10  ]
+{
+"69
+[e ++ _error_timer_ms -> -> 1 `i `Vus ]
+"72
+[e $ ! >= -> _error_timer_ms `ui -> -> 2000 `i `ui 11  ]
+{
+"73
+[e = _current_state . `E30 2 ]
+"74
+}
+[e :U 11 ]
+"75
+}
+[e $U 12  ]
+[e :U 10 ]
+{
+"77
+[e = _error_timer_ms -> -> 0 `i `us ]
+"78
+}
+[e :U 12 ]
+"80
+[e :UE 9 ]
+}
+"88
+[v _picfix_handle_triggered `(v ~T0 @X0 1 ef ]
+{
+[e :U _picfix_handle_triggered ]
+[f ]
+"90
+[e ( _picfix_error_indicate ..  ]
+"93
+[e ( _picfix_activate_reset ..  ]
+"96
+[e ( _picfix_watchdog_clear ..  ]
+"100
+[e :UE 13 ]
+}
+"106
+[v _picfix_timer_update `(v ~T0 @X0 1 ef ]
+{
+[e :U _picfix_timer_update ]
+[f ]
+"107
+[e ++ _system_timer_ms -> -> 1 `i `Vus ]
+"108
+[e :UE 14 ]
+}

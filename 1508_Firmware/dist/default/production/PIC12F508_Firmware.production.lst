@@ -1,0 +1,1794 @@
+
+
+Microchip MPLAB XC8 Assembler V3.00 build 20241204225717 
+                                                                                               Wed Jul 30 02:44:02 2025
+
+Microchip MPLAB XC8 C Compiler v3.00 (Free license) build 20241204225717 Og1 
+     1                           	processor	12F508
+     2                           	pagewidth 120
+     3                           	opt	flic
+     4                           	psect	idataBANK0,global,class=ENTRY,space=0,delta=2
+     5                           	psect	cinit,global,class=ENTRY,space=0,merge=1,delta=2
+     6                           	psect	bssBANK0,global,class=BANK0,space=1,delta=1,noexec
+     7                           	psect	dataBANK0,global,class=BANK0,space=1,delta=1,noexec
+     8                           	psect	clrtext,global,class=ENTRY,space=0,delta=2
+     9                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1,noexec
+    10                           	psect	cstackBANK0,global,class=BANK0,space=1,delta=1,noexec
+    11                           	psect	maintext,global,class=CODE,space=0,split=1,delta=2
+    12                           	psect	text1,local,class=CODE,space=0,merge=1,delta=2
+    13                           	psect	jmp_tab,global,class=ENTRY,space=0,delta=2
+    14                           	psect	text2,local,class=CODE,space=0,merge=1,delta=2
+    15                           	psect	text3,local,class=CODE,space=0,merge=1,delta=2
+    16                           	psect	text4,local,class=CODE,space=0,merge=1,delta=2
+    17                           	psect	text5,local,class=CODE,space=0,merge=1,delta=2
+    18                           	psect	text6,local,class=CODE,space=0,merge=1,delta=2
+    19                           	psect	text7,local,class=CODE,space=0,merge=1,delta=2
+    20                           	psect	text8,local,class=CODE,space=0,merge=1,delta=2
+    21                           	psect	text9,local,class=CODE,space=0,merge=1,delta=2
+    22                           	psect	text10,local,class=CODE,space=0,merge=1,delta=2
+    23                           	psect	text11,local,class=CODE,space=0,merge=1,delta=2,group=1
+    24                           	psect	text12,local,class=CODE,space=0,merge=1,delta=2
+    25                           	psect	text13,local,class=CODE,space=0,merge=1,delta=2
+    26                           	psect	text14,local,class=CODE,space=0,merge=1,delta=2
+    27                           	psect	config,global,abs,ovrld,class=CONFIG,space=4,delta=2,noexec
+    28                           	dabs	1,0x1C,4
+    29      000                     
+    30                           ; Generated 26/03/2025 GMT
+    31                           ; 
+    32                           ; Copyright © 2025, Microchip Technology Inc. and its subsidiaries ("Microchip")
+    33                           ; All rights reserved.
+    34                           ; 
+    35                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+      +                          ip").
+    36                           ; 
+    37                           ; Redistribution and use in source and binary forms, with or without modification, are
+    38                           ; permitted provided that the following conditions are met:
+    39                           ; 
+    40                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+      +                          t of
+    41                           ;        conditions and the following disclaimer.
+    42                           ; 
+    43                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+      +                          list
+    44                           ;        of conditions and the following disclaimer in the documentation and/or other
+    45                           ;        materials provided with the distribution. Publication is not required when
+    46                           ;        this file is used in an embedded application.
+    47                           ; 
+    48                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+      +                          is
+    49                           ;        software without specific prior written permission.
+    50                           ; 
+    51                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+    52                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+      +                          OR
+    53                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+      +                          T,
+    54                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+    55                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+    56                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+      +                          RICT
+    57                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+      +                          SE OF
+    58                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    59                           ; 
+    60                           ; 
+    61                           ; Code-generator required, PIC12F508 Definitions
+    62                           ; 
+    63                           ; SFR Addresses
+    64      004                     fsr             equ	4
+    65      004                     fsr0            equ	4
+    66      000                     indf            equ	0
+    67      000                     indf0           equ	0
+    68      002                     pc              equ	2
+    69      002                     pcl             equ	2
+    70      003                     status          equ	3
+    71      000                     INDF            equ	0	;# 
+    72      001                     TMR0            equ	1	;# 
+    73      002                     PCL             equ	2	;# 
+    74      003                     STATUS          equ	3	;# 
+    75      004                     FSR             equ	4	;# 
+    76      005                     OSCCAL          equ	5	;# 
+    77      006                     GPIO            equ	6	;# 
+    78                           
+    79                           	psect	idataBANK0
+    80      021                     __pidataBANK0:
+    81                           
+    82                           ;initializer for picfix_monitor_indicate@led_direction
+    83      021  0801               	retlw	1
+    84      006                     _TRIS           set	6
+    85      033                     _GP3            set	51
+    86      031                     _GP1            set	49
+    87      030                     _GP0            set	48
+    88                           
+    89                           	psect	cinit
+    90      001                     start_initialization:	
+    91                           ; #config settings
+    92                           
+    93      001                     __initialization:
+    94                           
+    95                           ; Initialize objects allocated to BANK0
+    96      001  0064               	clrf	4	;select bank0
+    97      002  0921               	fcall	__pidataBANK0	;fetch initializer
+    98      003  003A               	movwf	__pdataBANK0& (0+31)
+    99                           
+   100                           ; Clear objects allocated to BANK0
+   101      004  0C07               	movlw	__pbssBANK0
+   102      005  0024               	movwf	4
+   103      006  0C14               	movlw	(__pbssBANK0+13)& (0+255)
+   104      007  090A               	fcall	clear_ram0
+   105      008                     end_of_initialization:	
+   106                           ;End of C runtime variable initialization code
+   107                           
+   108      008                     __end_of__initialization:
+   109      008  0064               	clrf	4
+   110      009  0ACA               	ljmp	_main	;jump to C main() function
+   111                           
+   112                           	psect	bssBANK0
+   113      007                     __pbssBANK0:
+   114      007                     _error_timer_ms:
+   115      007                     	ds	2
+   116      009                     _system_timer_ms:
+   117      009                     	ds	2
+   118      00B                     picfix_timer_update_simple@delay_count:
+   119      00B                     	ds	1
+   120      00C                     picfix_monitor_indicate@led_brightness:
+   121      00C                     	ds	1
+   122      00D                     _error_state:
+   123      00D                     	ds	1
+   124      00E                     _error_confirmed:
+   125      00E                     	ds	1
+   126      00F                     _signal_stable_count:
+   127      00F                     	ds	1
+   128      010                     _watchdog_counter:
+   129      010                     	ds	1
+   130      011                     _led_state:
+   131      011                     	ds	1
+   132      012                     _flash_counter:
+   133      012                     	ds	1
+   134      013                     _current_state:
+   135      013                     	ds	1
+   136                           
+   137                           	psect	dataBANK0
+   138      01A                     __pdataBANK0:
+   139      01A                     picfix_monitor_indicate@led_direction:
+   140      01A                     	ds	1
+   141                           
+   142                           	psect	clrtext
+   143      00A                     clear_ram0:	
+   144                           ;	Called with FSR containing the base address, and
+   145                           ;	W with the last address+1
+   146                           
+   147      00A  0004               	clrwdt	;clear the watchdog before getting into this loop
+   148      00B                     clrloop0:
+   149      00B  0060               	clrf	0	;clear RAM location pointed to by FSR
+   150      00C  02A4               	incf	4,f	;increment pointer
+   151      00D  0184               	xorwf	4,w	;XOR with final address
+   152      00E  0E1F               	andlw	31	;Test low bits only
+   153      00F  0643               	btfsc	3,2	;have we reached the end yet?
+   154      010  0800               	retlw	0	;all done for this memory range, return
+   155      011  0184               	xorwf	4,w	;XOR again to restore value
+   156      012  0A0B               	goto	clrloop0	;do the next byte
+   157                           
+   158                           	psect	cstackCOMMON
+   159      000                     __pcstackCOMMON:
+   160      000                     ??_picfix_timer_update:
+   161      000                     ??_picfix_core_update:	
+   162                           ; 1 bytes @ 0x0
+   163                           
+   164      000                     ??_picfix_handle_startup:	
+   165                           ; 1 bytes @ 0x0
+   166                           
+   167      000                     ??_picfix_handle_triggered:	
+   168                           ; 1 bytes @ 0x0
+   169                           
+   170      000                     ??_picfix_init:	
+   171                           ; 1 bytes @ 0x0
+   172                           
+   173      000                     ??_picfix_startup_indicate:	
+   174                           ; 1 bytes @ 0x0
+   175                           
+   176      000                     ??_picfix_error_indicate:	
+   177                           ; 1 bytes @ 0x0
+   178                           
+   179      000                     ??_picfix_activate_reset:	
+   180                           ; 1 bytes @ 0x0
+   181                           
+   182      000                     ??_picfix_watchdog_clear:	
+   183                           ; 1 bytes @ 0x0
+   184                           
+   185      000                     ??_main:	
+   186                           ; 1 bytes @ 0x0
+   187                           
+   188      000                     ??___lwmod:	
+   189                           ; 1 bytes @ 0x0
+   190                           
+   191                           
+   192                           	psect	cstackBANK0
+   193      014                     __pcstackBANK0:	
+   194                           ; 1 bytes @ 0x0
+   195                           
+   196      014                     ?_picfix_timer_update:
+   197      014                     ?_picfix_core_update:	
+   198                           ; 1 bytes @ 0x0
+   199                           
+   200      014                     ?_picfix_handle_startup:	
+   201                           ; 1 bytes @ 0x0
+   202                           
+   203      014                     ?_picfix_handle_monitoring:	
+   204                           ; 1 bytes @ 0x0
+   205                           
+   206      014                     ?_picfix_handle_triggered:	
+   207                           ; 1 bytes @ 0x0
+   208                           
+   209      014                     ?_picfix_init:	
+   210                           ; 1 bytes @ 0x0
+   211                           
+   212      014                     ?_picfix_startup_indicate:	
+   213                           ; 1 bytes @ 0x0
+   214                           
+   215      014                     ?_picfix_monitor_indicate:	
+   216                           ; 1 bytes @ 0x0
+   217                           
+   218      014                     ?_picfix_error_indicate:	
+   219                           ; 1 bytes @ 0x0
+   220                           
+   221      014                     ?_picfix_activate_reset:	
+   222                           ; 1 bytes @ 0x0
+   223                           
+   224      014                     ?_picfix_read_signal:	
+   225                           ; 1 bytes @ 0x0
+   226                           
+   227      014                     ?_picfix_watchdog_clear:	
+   228                           ; 1 bytes @ 0x0
+   229                           
+   230      014                     ?_picfix_timer_update_simple:	
+   231                           ; 1 bytes @ 0x0
+   232                           
+   233      014                     ?_main:	
+   234                           ; 1 bytes @ 0x0
+   235                           
+   236      014                     ?___lwmod:	
+   237                           ; 2 bytes @ 0x0
+   238                           
+   239      014                     ___lwmod@divisor:	
+   240                           ; 2 bytes @ 0x0
+   241                           
+   242      014                     ??_picfix_monitor_indicate:	
+   243                           ; 2 bytes @ 0x0
+   244                           
+   245      014                     ??_picfix_timer_update_simple:	
+   246                           ; 1 bytes @ 0x0
+   247                           
+   248                           
+   249                           ; 1 bytes @ 0x0
+   250      014                     	ds	1
+   251      015                     ??_picfix_read_signal:
+   252                           
+   253                           ; 1 bytes @ 0x1
+   254      015                     	ds	1
+   255      016                     picfix_read_signal@sample1:
+   256      016                     ___lwmod@dividend:	
+   257                           ; 1 bytes @ 0x2
+   258                           
+   259                           
+   260                           ; 2 bytes @ 0x2
+   261      016                     	ds	1
+   262      017                     picfix_read_signal@sample2:
+   263                           
+   264                           ; 1 bytes @ 0x3
+   265      017                     	ds	1
+   266      018                     picfix_read_signal@sample3:
+   267      018                     ___lwmod@counter:	
+   268                           ; 1 bytes @ 0x4
+   269                           
+   270                           
+   271                           ; 1 bytes @ 0x4
+   272      018                     	ds	1
+   273      019                     ??_picfix_handle_monitoring:
+   274                           
+   275                           ; 1 bytes @ 0x5
+   276      019                     	ds	1
+   277                           
+   278                           	psect	maintext
+   279      0CA                     __pmaintext:	
+   280 ;;
+   281 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   282 ;;
+   283 ;; *************** function _main *****************
+   284 ;; Defined at:
+   285 ;;		line 211 in file "picfix_508.c"
+   286 ;; Parameters:    Size  Location     Type
+   287 ;;		None
+   288 ;; Auto vars:     Size  Location     Type
+   289 ;;		None
+   290 ;; Return value:  Size  Location     Type
+   291 ;;                  2   78[None  ] int 
+   292 ;; Registers used:
+   293 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+0, btemp+1, btemp+2, btemp+3, pclath, cstack
+   294 ;; Tracked objects:
+   295 ;;		On entry : B00/0
+   296 ;;		On exit  : 0/0
+   297 ;;		Unchanged: 0/0
+   298 ;; Data sizes:     COMMON   BANK0
+   299 ;;      Params:         0       0
+   300 ;;      Locals:         0       0
+   301 ;;      Temps:          0       0
+   302 ;;      Totals:         0       0
+   303 ;;Total ram usage:        0 bytes
+   304 ;; Hardware stack levels required when called: 4
+   305 ;; This function calls:
+   306 ;;		_picfix_core_update
+   307 ;;		_picfix_init
+   308 ;;		_picfix_timer_update_simple
+   309 ;;		_picfix_watchdog_clear
+   310 ;; This function is called by:
+   311 ;;		Startup code after reset
+   312 ;; This function uses a non-reentrant model
+   313 ;;
+   314                           
+   315      0CA                     _main:	
+   316                           ;psect for function _main
+   317                           
+   318      0CA                     l894:	
+   319                           ;incstack = 0
+   320 ;; hardware stack exceeded
+   321                           ; Regs used in _main: [wreg-fsr0h+status,2-btemp+3+pclath+cstack]
+   322                           
+   323                           
+   324                           ;picfix_508.c: 213:     picfix_init();
+   325      0CA  0915               	fcall	entry__picfix_init
+   326      0CB                     l896:
+   327                           
+   328                           ;picfix_508.c: 218:         picfix_timer_update_simple();
+   329      0CB  0913               	fcall	entry__picfix_timer_update_simple
+   330      0CC                     l898:
+   331                           
+   332                           ;picfix_508.c: 221:         picfix_core_update();
+   333      0CC  0916               	fcall	entry__picfix_core_update
+   334      0CD                     l900:
+   335                           
+   336                           ;picfix_508.c: 224:         picfix_watchdog_clear();
+   337      0CD  0918               	fcall	entry__picfix_watchdog_clear
+   338      0CE  0ACB               	goto	l896
+   339      0CF  0A00               	ljmp	start
+   340      0D0                     __end_of_main:
+   341                           
+   342                           	psect	text1
+   343      104                     __ptext1:	
+   344 ;; *************** function _picfix_timer_update_simple *****************
+   345 ;; Defined at:
+   346 ;;		line 196 in file "picfix_508.c"
+   347 ;; Parameters:    Size  Location     Type
+   348 ;;		None
+   349 ;; Auto vars:     Size  Location     Type
+   350 ;;		None
+   351 ;; Return value:  Size  Location     Type
+   352 ;;                  1   70[None  ] void 
+   353 ;; Registers used:
+   354 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+0, btemp+1, pclath, cstack
+   355 ;; Tracked objects:
+   356 ;;		On entry : 0/0
+   357 ;;		On exit  : 0/0
+   358 ;;		Unchanged: 0/0
+   359 ;; Data sizes:     COMMON   BANK0
+   360 ;;      Params:         0       0
+   361 ;;      Locals:         0       0
+   362 ;;      Temps:          0       1
+   363 ;;      Totals:         0       1
+   364 ;;Total ram usage:        1 bytes
+   365 ;; Hardware stack levels used: 1
+   366 ;; Hardware stack levels required when called: 1
+   367 ;; This function calls:
+   368 ;;		_picfix_timer_update
+   369 ;; This function is called by:
+   370 ;;		_main
+   371 ;; This function uses a non-reentrant model
+   372 ;;
+   373                           
+   374      104                     _picfix_timer_update_simple:	
+   375                           ;psect for function _picfix_timer_update_simple
+   376                           
+   377      104                     l804:
+   378                           
+   379                           ;picfix_508.c: 197:     static uint8_t delay_count = 0;;picfix_508.c: 199:     _delay((u
+      +                          nsigned long)((1)*(4000000/4000.0)));
+   380      104  0CC7               	movlw	199
+   381      105  0034               	movwf	??_picfix_timer_update_simple
+   382      106                     u287:
+   383      106  0B07               	nop2
+   384      107  02F4               	decfsz	??_picfix_timer_update_simple,f
+   385      108  0B06               	goto	u287
+   386      109  0B0A               	nop2
+   387      10A  0B0B               	nop2
+   388      10B                     l806:
+   389                           
+   390                           ;picfix_508.c: 200:     delay_count++;
+   391      10B  0C01               	movlw	1
+   392      10C  01EB               	addwf	picfix_timer_update_simple@delay_count,f
+   393      10D                     l808:
+   394                           
+   395                           ;picfix_508.c: 202:     if(delay_count >= 1) {
+   396      10D  020B               	movf	picfix_timer_update_simple@delay_count,w
+   397      10E  0643               	btfsc	3,2
+   398      10F  0B11               	goto	u191
+   399      110  0B12               	goto	u190
+   400      111                     u191:
+   401      111  0B14               	goto	l74
+   402      112                     u190:
+   403      112                     l810:
+   404                           
+   405                           ;picfix_508.c: 203:         picfix_timer_update();
+   406      112  0914               	fcall	entry__picfix_timer_update
+   407      113                     l812:
+   408                           
+   409                           ;picfix_508.c: 204:         delay_count = 0;
+   410      113  006B               	clrf	picfix_timer_update_simple@delay_count
+   411      114                     l74:
+   412      114  0800               	retlw	0
+   413      115                     __end_of_picfix_timer_update_simple:
+   414                           
+   415                           	psect	jmp_tab
+   416      013                     __pjmp_tab:	
+   417                           ;incstack = 0
+   418                           ; Regs used in _picfix_timer_update_simple: [wreg-fsr0h+status,2-btemp+1+pclath+cstack]
+   419                           
+   420      013                     entry__picfix_timer_update_simple:
+   421      013  0B04               	ljmp	_picfix_timer_update_simple
+   422      014                     entry__picfix_timer_update:	
+   423                           ;incstack = 0
+   424                           ; Regs used in _picfix_timer_update: [wreg-fsr0h+btemp+0+btemp+1]
+   425                           
+   426      014  0AD0               	ljmp	_picfix_timer_update
+   427      015                     entry__picfix_init:	
+   428                           ;incstack = 0
+   429                           ; Regs used in _picfix_init: [wreg-fsr0h+status,2]
+   430                           
+   431      015  0AF4               	ljmp	_picfix_init
+   432      016                     entry__picfix_core_update:	
+   433                           ;incstack = 0
+   434 ;; hardware stack exceeded
+   435                           ; Regs used in _picfix_core_update: [wreg-fsr0h+status,2-btemp+3+pclath+cstack]
+   436                           
+   437      016  0B2B               	ljmp	_picfix_core_update
+   438      017                     entry__picfix_handle_triggered:	
+   439                           ;incstack = 0
+   440 ;; hardware stack exceeded
+   441                           ; Regs used in _picfix_handle_triggered: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+   442                           
+   443      017  0AC6               	ljmp	_picfix_handle_triggered
+   444      018                     entry__picfix_watchdog_clear:	
+   445                           ;incstack = 0
+   446                           ; Regs used in _picfix_watchdog_clear: [wreg-fsr0h+status,2+status,0]
+   447                           
+   448      018  0ADA               	ljmp	_picfix_watchdog_clear
+   449      019                     entry__picfix_error_indicate:	
+   450                           ;incstack = 0
+   451 ;; hardware stack exceeded
+   452                           ; Regs used in _picfix_error_indicate: [wregfsr0]
+   453                           
+   454      019  0AC4               	ljmp	_picfix_error_indicate
+   455      01A                     entry__picfix_activate_reset:	
+   456                           ;incstack = 0
+   457 ;; hardware stack exceeded
+   458                           ; Regs used in _picfix_activate_reset: [wregfsr0]
+   459                           
+   460      01A  0AC2               	ljmp	_picfix_activate_reset
+   461      01B                     entry__picfix_handle_startup:	
+   462                           ;incstack = 0
+   463 ;; hardware stack exceeded
+   464                           ; Regs used in _picfix_handle_startup: [wreg-fsr0h+status,2-btemp+1+pclath+cstack]
+   465                           
+   466      01B  0AE5               	ljmp	_picfix_handle_startup
+   467      01C                     entry__picfix_startup_indicate:	
+   468                           ;incstack = 0
+   469 ;; hardware stack exceeded
+   470                           ; Regs used in _picfix_startup_indicate: [wreg-fsr0h+status,2-btemp+1+pclath+cstack]
+   471                           
+   472      01C  0B15               	ljmp	_picfix_startup_indicate
+   473      01D                     entry____lwmod:	
+   474                           ;incstack = 0
+   475 ;; hardware stack exceeded
+   476                           ; Regs used in ___lwmod: [wreg-fsr0h+status,2-btemp+1]
+   477                           
+   478      01D  0BBF               	ljmp	___lwmod
+   479      01E                     entry__picfix_handle_monitoring:	
+   480                           ;incstack = 0
+   481 ;; hardware stack exceeded
+   482                           ; Regs used in _picfix_handle_monitoring: [wreg-fsr0h+status,2-btemp+3+pclath+cstack]
+   483                           
+   484      01E  0B46               	ljmp	_picfix_handle_monitoring
+   485      01F                     entry__picfix_read_signal:	
+   486                           ;incstack = 0
+   487 ;; hardware stack exceeded
+   488                           ; Regs used in _picfix_read_signal: [wreg-fsr0h+status,2-btemp+3]
+   489                           
+   490      01F  0B8C               	ljmp	_picfix_read_signal
+   491      020                     entry__picfix_monitor_indicate:	
+   492                           ;incstack = 0
+   493 ;; hardware stack exceeded
+   494                           ; Regs used in _picfix_monitor_indicate: [wreg-fsr0h+status,2+status,0]
+   495                           
+   496      020  0B67               	ljmp	_picfix_monitor_indicate
+   497                           
+   498                           	psect	text2
+   499      0D0                     __ptext2:	
+   500 ;; *************** function _picfix_timer_update *****************
+   501 ;; Defined at:
+   502 ;;		line 106 in file "picfix_core.c"
+   503 ;; Parameters:    Size  Location     Type
+   504 ;;		None
+   505 ;; Auto vars:     Size  Location     Type
+   506 ;;		None
+   507 ;; Return value:  Size  Location     Type
+   508 ;;                  1   18[None  ] void 
+   509 ;; Registers used:
+   510 ;;		wreg, fsr0l, fsr0h, btemp+0, btemp+1
+   511 ;; Tracked objects:
+   512 ;;		On entry : 0/0
+   513 ;;		On exit  : 0/0
+   514 ;;		Unchanged: 0/0
+   515 ;; Data sizes:     COMMON   BANK0
+   516 ;;      Params:         0       0
+   517 ;;      Locals:         0       0
+   518 ;;      Temps:          0       0
+   519 ;;      Totals:         0       0
+   520 ;;Total ram usage:        0 bytes
+   521 ;; Hardware stack levels used: 1
+   522 ;; This function calls:
+   523 ;;		Nothing
+   524 ;; This function is called by:
+   525 ;;		_picfix_timer_update_simple
+   526 ;; This function uses a non-reentrant model
+   527 ;;
+   528                           
+   529      0D0                     _picfix_timer_update:	
+   530                           ;psect for function _picfix_timer_update
+   531                           
+   532      0D0                     l758:
+   533                           
+   534                           ;picfix_core.c: 107:     system_timer_ms++;
+   535      0D0  0C01               	movlw	1
+   536      0D1  003C               	movwf	btemp
+   537      0D2  007D               	clrf	btemp+1
+   538      0D3  021C               	movf	wtemp0,w
+   539      0D4  01E9               	addwf	_system_timer_ms,f	;volatile
+   540      0D5  0603               	skipnc
+   541      0D6  02AA               	incf	_system_timer_ms+1,f	;volatile
+   542      0D7  021D               	movf	wtemp0+1,w
+   543      0D8  01EA               	addwf	_system_timer_ms+1,f	;volatile
+   544      0D9                     l130:
+   545      0D9  0800               	retlw	0
+   546      0DA                     __end_of_picfix_timer_update:
+   547                           
+   548                           	psect	text3
+   549      0F4                     __ptext3:	
+   550 ;; *************** function _picfix_init *****************
+   551 ;; Defined at:
+   552 ;;		line 63 in file "picfix_508.c"
+   553 ;; Parameters:    Size  Location     Type
+   554 ;;		None
+   555 ;; Auto vars:     Size  Location     Type
+   556 ;;		None
+   557 ;; Return value:  Size  Location     Type
+   558 ;;                  1   34[None  ] void 
+   559 ;; Registers used:
+   560 ;;		wreg, fsr0l, fsr0h, status,2
+   561 ;; Tracked objects:
+   562 ;;		On entry : 0/0
+   563 ;;		On exit  : 0/0
+   564 ;;		Unchanged: 0/0
+   565 ;; Data sizes:     COMMON   BANK0
+   566 ;;      Params:         0       0
+   567 ;;      Locals:         0       0
+   568 ;;      Temps:          0       0
+   569 ;;      Totals:         0       0
+   570 ;;Total ram usage:        0 bytes
+   571 ;; Hardware stack levels used: 1
+   572 ;; This function calls:
+   573 ;;		Nothing
+   574 ;; This function is called by:
+   575 ;;		_main
+   576 ;; This function uses a non-reentrant model
+   577 ;;
+   578                           
+   579      0F4                     _picfix_init:	
+   580                           ;psect for function _picfix_init
+   581                           
+   582      0F4                     l782:
+   583      0F4  0004               	clrwdt	;# 
+   584      0F5                     l784:
+   585                           
+   586                           ;picfix_508.c: 68:     TRIS = 0b001000;
+   587      0F5  0C08               	movlw	8
+   588      0F6  0006               	tris	6
+   589      0F7                     l786:
+   590                           
+   591                           ;picfix_508.c: 71:     GP0 = 0;
+   592      0F7  0406               	bcf	6,0	;volatile
+   593      0F8                     l788:
+   594                           
+   595                           ;picfix_508.c: 72:     GP1 = 0;
+   596      0F8  0426               	bcf	6,1	;volatile
+   597      0F9                     l790:
+   598                           
+   599                           ;picfix_508.c: 75:     system_timer_ms = 0;
+   600      0F9  0069               	clrf	_system_timer_ms	;volatile
+   601      0FA  006A               	clrf	_system_timer_ms+1	;volatile
+   602      0FB                     l792:
+   603                           
+   604                           ;picfix_508.c: 76:     error_timer_ms = 0;
+   605      0FB  0067               	clrf	_error_timer_ms	;volatile
+   606      0FC  0068               	clrf	_error_timer_ms+1	;volatile
+   607      0FD                     l794:
+   608                           
+   609                           ;picfix_508.c: 77:     watchdog_counter = 0;
+   610      0FD  0070               	clrf	_watchdog_counter	;volatile
+   611      0FE                     l796:
+   612                           
+   613                           ;picfix_508.c: 78:     signal_stable_count = 0;
+   614      0FE  006F               	clrf	_signal_stable_count	;volatile
+   615      0FF                     l798:
+   616                           
+   617                           ;picfix_508.c: 79:     error_confirmed = 0;
+   618      0FF  006E               	clrf	_error_confirmed	;volatile
+   619      100                     l800:
+   620                           
+   621                           ;picfix_508.c: 80:     error_state = ERROR_CHECK_IDLE;
+   622      100  006D               	clrf	_error_state
+   623      101                     l802:
+   624                           
+   625                           ;picfix_508.c: 81:     current_state = STATE_STARTUP;
+   626      101  0073               	clrf	_current_state	;volatile
+   627      102  0004               	clrwdt	;# 
+   628      103                     l35:
+   629      103  0800               	retlw	0
+   630      104                     __end_of_picfix_init:
+   631                           
+   632                           	psect	text4
+   633      12B                     __ptext4:	
+   634 ;; *************** function _picfix_core_update *****************
+   635 ;; Defined at:
+   636 ;;		line 19 in file "picfix_core.c"
+   637 ;; Parameters:    Size  Location     Type
+   638 ;;		None
+   639 ;; Auto vars:     Size  Location     Type
+   640 ;;		None
+   641 ;; Return value:  Size  Location     Type
+   642 ;;                  1   20[None  ] void 
+   643 ;; Registers used:
+   644 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+0, btemp+1, btemp+2, btemp+3, pclath, cstack
+   645 ;; Tracked objects:
+   646 ;;		On entry : 0/0
+   647 ;;		On exit  : 0/0
+   648 ;;		Unchanged: 0/0
+   649 ;; Data sizes:     COMMON   BANK0
+   650 ;;      Params:         0       0
+   651 ;;      Locals:         0       0
+   652 ;;      Temps:          0       0
+   653 ;;      Totals:         0       0
+   654 ;;Total ram usage:        0 bytes
+   655 ;; Hardware stack levels used: 1
+   656 ;; Hardware stack levels required when called: 3
+   657 ;; This function calls:
+   658 ;;		_picfix_handle_monitoring
+   659 ;;		_picfix_handle_startup
+   660 ;;		_picfix_handle_triggered
+   661 ;; This function is called by:
+   662 ;;		_main
+   663 ;; This function uses a non-reentrant model
+   664 ;;
+   665                           
+   666      12B                     _picfix_core_update:	
+   667                           ;psect for function _picfix_core_update
+   668                           
+   669      12B                     l878:
+   670                           
+   671                           ;picfix_core.c: 20:     switch(current_state) {
+   672      12B  0B32               	goto	l888
+   673      12C                     l880:
+   674                           
+   675                           ;picfix_core.c: 22:             picfix_handle_startup();
+   676      12C  091B               	fcall	entry__picfix_handle_startup
+   677                           
+   678                           ;picfix_core.c: 23:             break;
+   679      12D  0B45               	goto	l114
+   680      12E                     l882:
+   681                           
+   682                           ;picfix_core.c: 26:             picfix_handle_monitoring();
+   683      12E  091E               	fcall	entry__picfix_handle_monitoring
+   684                           
+   685                           ;picfix_core.c: 27:             break;
+   686      12F  0B45               	goto	l114
+   687      130                     l884:
+   688                           
+   689                           ;picfix_core.c: 30:             picfix_handle_triggered();
+   690      130  0917               	fcall	entry__picfix_handle_triggered
+   691                           
+   692                           ;picfix_core.c: 31:             break;
+   693      131  0B45               	goto	l114
+   694      132                     l888:
+   695      132  0213               	movf	_current_state,w	;volatile
+   696      133  003C               	movwf	btemp
+   697      134  007D               	clrf	btemp+1
+   698                           
+   699                           ; Switch on 2 bytes has been partitioned into a top level switch of size 1, and 1 sub-sw
+      +                          itches
+   700                           ; Switch size 1, requested type "simple"
+   701                           ; Number of cases is 1, Range of values is 0 to 0
+   702                           ; switch strategies available:
+   703                           ; Name         Instructions Cycles
+   704                           ; simple_byte            4     3 (average)
+   705                           ;	Chosen strategy is simple_byte
+   706      135  021D               	movf	wtemp0+1,w
+   707      136  0F00               	xorlw	0	; case 0
+   708      137  0643               	skipnz
+   709      138  0B3A               	goto	l906
+   710      139  0B45               	goto	l114
+   711      13A                     l906:
+   712                           
+   713                           ; Switch size 1, requested type "simple"
+   714                           ; Number of cases is 3, Range of values is 0 to 2
+   715                           ; switch strategies available:
+   716                           ; Name         Instructions Cycles
+   717                           ; simple_byte           10     6 (average)
+   718                           ;	Chosen strategy is simple_byte
+   719      13A  021C               	movf	wtemp0,w
+   720      13B  0F00               	xorlw	0	; case 0
+   721      13C  0643               	skipnz
+   722      13D  0B2C               	goto	l880
+   723      13E  0F01               	xorlw	1	; case 1
+   724      13F  0643               	skipnz
+   725      140  0B2E               	goto	l882
+   726      141  0F03               	xorlw	3	; case 2
+   727      142  0643               	skipnz
+   728      143  0B30               	goto	l884
+   729      144  0B45               	goto	l114
+   730      145                     l114:
+   731      145  0800               	retlw	0
+   732      146                     __end_of_picfix_core_update:
+   733                           
+   734                           	psect	text5
+   735      0C6                     __ptext5:	
+   736 ;; *************** function _picfix_handle_triggered *****************
+   737 ;; Defined at:
+   738 ;;		line 88 in file "picfix_core.c"
+   739 ;; Parameters:    Size  Location     Type
+   740 ;;		None
+   741 ;; Auto vars:     Size  Location     Type
+   742 ;;		None
+   743 ;; Return value:  Size  Location     Type
+   744 ;;                  1   88[None  ] void 
+   745 ;; Registers used:
+   746 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+   747 ;; Tracked objects:
+   748 ;;		On entry : 0/0
+   749 ;;		On exit  : 0/0
+   750 ;;		Unchanged: 0/0
+   751 ;; Data sizes:     COMMON   BANK0
+   752 ;;      Params:         0       0
+   753 ;;      Locals:         0       0
+   754 ;;      Temps:          0       0
+   755 ;;      Totals:         0       0
+   756 ;;Total ram usage:        0 bytes
+   757 ;; Hardware stack levels used: 1
+   758 ;; Hardware stack levels required when called: 1
+   759 ;; This function calls:
+   760 ;;		_picfix_activate_reset
+   761 ;;		_picfix_error_indicate
+   762 ;;		_picfix_watchdog_clear
+   763 ;; This function is called by:
+   764 ;;		_picfix_core_update
+   765 ;; This function uses a non-reentrant model
+   766 ;;
+   767                           
+   768      0C6                     _picfix_handle_triggered:	
+   769                           ;psect for function _picfix_handle_triggered
+   770                           
+   771      0C6                     l780:
+   772                           
+   773                           ;picfix_core.c: 90:     picfix_error_indicate();
+   774      0C6  0919               	fcall	entry__picfix_error_indicate
+   775                           
+   776                           ;picfix_core.c: 93:     picfix_activate_reset();
+   777      0C7  091A               	fcall	entry__picfix_activate_reset
+   778                           
+   779                           ;picfix_core.c: 96:     picfix_watchdog_clear();
+   780      0C8  0918               	fcall	entry__picfix_watchdog_clear
+   781      0C9                     l127:
+   782      0C9  0800               	retlw	0
+   783      0CA                     __end_of_picfix_handle_triggered:
+   784                           
+   785                           	psect	text6
+   786      0DA                     __ptext6:	
+   787 ;; *************** function _picfix_watchdog_clear *****************
+   788 ;; Defined at:
+   789 ;;		line 173 in file "picfix_508.c"
+   790 ;; Parameters:    Size  Location     Type
+   791 ;;		None
+   792 ;; Auto vars:     Size  Location     Type
+   793 ;;		None
+   794 ;; Return value:  Size  Location     Type
+   795 ;;                  1   66[None  ] void 
+   796 ;; Registers used:
+   797 ;;		wreg, fsr0l, fsr0h, status,2, status,0
+   798 ;; Tracked objects:
+   799 ;;		On entry : 0/0
+   800 ;;		On exit  : 0/0
+   801 ;;		Unchanged: 0/0
+   802 ;; Data sizes:     COMMON   BANK0
+   803 ;;      Params:         0       0
+   804 ;;      Locals:         0       0
+   805 ;;      Temps:          0       0
+   806 ;;      Totals:         0       0
+   807 ;;Total ram usage:        0 bytes
+   808 ;; Hardware stack levels used: 1
+   809 ;; This function calls:
+   810 ;;		Nothing
+   811 ;; This function is called by:
+   812 ;;		_main
+   813 ;;		_picfix_handle_triggered
+   814 ;; This function uses a non-reentrant model
+   815 ;;
+   816                           
+   817      0DA                     _picfix_watchdog_clear:	
+   818                           ;psect for function _picfix_watchdog_clear
+   819                           
+   820      0DA                     l750:
+   821      0DA  0004               	clrwdt	;# 
+   822      0DB                     l752:
+   823                           
+   824                           ;picfix_508.c: 178:     watchdog_counter++;
+   825      0DB  0C01               	movlw	1
+   826      0DC  01F0               	addwf	_watchdog_counter,f	;volatile
+   827      0DD                     l754:
+   828                           
+   829                           ;picfix_508.c: 181:     if(watchdog_counter > 200) {
+   830      0DD  0CC9               	movlw	201
+   831      0DE  0090               	subwf	_watchdog_counter,w	;volatile
+   832      0DF  0703               	skipc
+   833      0E0  0AE2               	goto	u151
+   834      0E1  0AE3               	goto	u150
+   835      0E2                     u151:
+   836      0E2  0AE4               	goto	l68
+   837      0E3                     u150:
+   838      0E3                     l756:
+   839                           
+   840                           ;picfix_508.c: 182:         watchdog_counter = 0;
+   841      0E3  0070               	clrf	_watchdog_counter	;volatile
+   842      0E4                     l68:
+   843      0E4  0800               	retlw	0
+   844      0E5                     __end_of_picfix_watchdog_clear:
+   845                           
+   846                           	psect	text7
+   847      0C4                     __ptext7:	
+   848 ;; *************** function _picfix_error_indicate *****************
+   849 ;; Defined at:
+   850 ;;		line 130 in file "picfix_508.c"
+   851 ;; Parameters:    Size  Location     Type
+   852 ;;		None
+   853 ;; Auto vars:     Size  Location     Type
+   854 ;;		None
+   855 ;; Return value:  Size  Location     Type
+   856 ;;                  1   55[None  ] void 
+   857 ;; Registers used:
+   858 ;;		wreg, fsr0l, fsr0h
+   859 ;; Tracked objects:
+   860 ;;		On entry : 0/0
+   861 ;;		On exit  : 0/0
+   862 ;;		Unchanged: 0/0
+   863 ;; Data sizes:     COMMON   BANK0
+   864 ;;      Params:         0       0
+   865 ;;      Locals:         0       0
+   866 ;;      Temps:          0       0
+   867 ;;      Totals:         0       0
+   868 ;;Total ram usage:        0 bytes
+   869 ;; Hardware stack levels used: 1
+   870 ;; This function calls:
+   871 ;;		Nothing
+   872 ;; This function is called by:
+   873 ;;		_picfix_handle_triggered
+   874 ;; This function uses a non-reentrant model
+   875 ;;
+   876                           
+   877      0C4                     _picfix_error_indicate:	
+   878                           ;psect for function _picfix_error_indicate
+   879                           
+   880      0C4                     l732:
+   881                           
+   882                           ;picfix_508.c: 131:     GP0 = 1;
+   883      0C4  0506               	bsf	6,0	;volatile
+   884      0C5                     l56:
+   885      0C5  0800               	retlw	0
+   886      0C6                     __end_of_picfix_error_indicate:
+   887                           
+   888                           	psect	text8
+   889      0C2                     __ptext8:	
+   890 ;; *************** function _picfix_activate_reset *****************
+   891 ;; Defined at:
+   892 ;;		line 137 in file "picfix_508.c"
+   893 ;; Parameters:    Size  Location     Type
+   894 ;;		None
+   895 ;; Auto vars:     Size  Location     Type
+   896 ;;		None
+   897 ;; Return value:  Size  Location     Type
+   898 ;;                  1   58[None  ] void 
+   899 ;; Registers used:
+   900 ;;		wreg, fsr0l, fsr0h
+   901 ;; Tracked objects:
+   902 ;;		On entry : 0/0
+   903 ;;		On exit  : 0/0
+   904 ;;		Unchanged: 0/0
+   905 ;; Data sizes:     COMMON   BANK0
+   906 ;;      Params:         0       0
+   907 ;;      Locals:         0       0
+   908 ;;      Temps:          0       0
+   909 ;;      Totals:         0       0
+   910 ;;Total ram usage:        0 bytes
+   911 ;; Hardware stack levels used: 1
+   912 ;; This function calls:
+   913 ;;		Nothing
+   914 ;; This function is called by:
+   915 ;;		_picfix_handle_triggered
+   916 ;; This function uses a non-reentrant model
+   917 ;;
+   918                           
+   919      0C2                     _picfix_activate_reset:	
+   920                           ;psect for function _picfix_activate_reset
+   921                           
+   922      0C2                     l734:
+   923                           
+   924                           ;picfix_508.c: 138:     GP1 = 1;
+   925      0C2  0526               	bsf	6,1	;volatile
+   926      0C3                     l59:
+   927      0C3  0800               	retlw	0
+   928      0C4                     __end_of_picfix_activate_reset:
+   929                           
+   930                           	psect	text9
+   931      0E5                     __ptext9:	
+   932 ;; *************** function _picfix_handle_startup *****************
+   933 ;; Defined at:
+   934 ;;		line 41 in file "picfix_core.c"
+   935 ;; Parameters:    Size  Location     Type
+   936 ;;		None
+   937 ;; Auto vars:     Size  Location     Type
+   938 ;;		None
+   939 ;; Return value:  Size  Location     Type
+   940 ;;                  1   84[None  ] void 
+   941 ;; Registers used:
+   942 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+0, btemp+1, pclath, cstack
+   943 ;; Tracked objects:
+   944 ;;		On entry : 0/0
+   945 ;;		On exit  : 0/0
+   946 ;;		Unchanged: 0/0
+   947 ;; Data sizes:     COMMON   BANK0
+   948 ;;      Params:         0       0
+   949 ;;      Locals:         0       0
+   950 ;;      Temps:          0       0
+   951 ;;      Totals:         0       0
+   952 ;;Total ram usage:        0 bytes
+   953 ;; Hardware stack levels used: 1
+   954 ;; Hardware stack levels required when called: 2
+   955 ;; This function calls:
+   956 ;;		_picfix_startup_indicate
+   957 ;; This function is called by:
+   958 ;;		_picfix_core_update
+   959 ;; This function uses a non-reentrant model
+   960 ;;
+   961                           
+   962      0E5                     _picfix_handle_startup:	
+   963                           ;psect for function _picfix_handle_startup
+   964                           
+   965      0E5                     l870:
+   966                           
+   967                           ;picfix_core.c: 43:     picfix_startup_indicate();
+   968      0E5  091C               	fcall	entry__picfix_startup_indicate
+   969      0E6                     l872:
+   970                           
+   971                           ;picfix_core.c: 46:     if(system_timer_ms >= 2000) {
+   972      0E6  0C07               	movlw	7
+   973      0E7  008A               	subwf	_system_timer_ms+1,w	;volatile
+   974      0E8  0CD0               	movlw	208
+   975      0E9  0643               	skipnz
+   976      0EA  0089               	subwf	_system_timer_ms,w	;volatile
+   977      0EB  0703               	skipc
+   978      0EC  0AEE               	goto	u271
+   979      0ED  0AEF               	goto	u270
+   980      0EE                     u271:
+   981      0EE  0AF3               	goto	l118
+   982      0EF                     u270:
+   983      0EF                     l874:
+   984                           
+   985                           ;picfix_core.c: 47:         current_state = STATE_MONITORING;
+   986      0EF  0C01               	movlw	1
+   987      0F0  0033               	movwf	_current_state	;volatile
+   988      0F1                     l876:
+   989                           
+   990                           ;picfix_core.c: 48:         error_timer_ms = 0;
+   991      0F1  0067               	clrf	_error_timer_ms	;volatile
+   992      0F2  0068               	clrf	_error_timer_ms+1	;volatile
+   993      0F3                     l118:
+   994      0F3  0800               	retlw	0
+   995      0F4                     __end_of_picfix_handle_startup:
+   996                           
+   997                           	psect	text10
+   998      115                     __ptext10:	
+   999 ;; *************** function _picfix_startup_indicate *****************
+  1000 ;; Defined at:
+  1001 ;;		line 90 in file "picfix_508.c"
+  1002 ;; Parameters:    Size  Location     Type
+  1003 ;;		None
+  1004 ;; Auto vars:     Size  Location     Type
+  1005 ;;		None
+  1006 ;; Return value:  Size  Location     Type
+  1007 ;;                  1   37[None  ] void 
+  1008 ;; Registers used:
+  1009 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+0, btemp+1, pclath, cstack
+  1010 ;; Tracked objects:
+  1011 ;;		On entry : 0/0
+  1012 ;;		On exit  : 0/0
+  1013 ;;		Unchanged: 0/0
+  1014 ;; Data sizes:     COMMON   BANK0
+  1015 ;;      Params:         0       0
+  1016 ;;      Locals:         0       0
+  1017 ;;      Temps:          0       0
+  1018 ;;      Totals:         0       0
+  1019 ;;Total ram usage:        0 bytes
+  1020 ;; Hardware stack levels used: 1
+  1021 ;; Hardware stack levels required when called: 1
+  1022 ;; This function calls:
+  1023 ;;		___lwmod
+  1024 ;; This function is called by:
+  1025 ;;		_picfix_handle_startup
+  1026 ;; This function uses a non-reentrant model
+  1027 ;;
+  1028                           
+  1029      115                     _picfix_startup_indicate:	
+  1030                           ;psect for function _picfix_startup_indicate
+  1031                           
+  1032      115                     l864:
+  1033                           
+  1034                           ;picfix_508.c: 92:     if((system_timer_ms % 250) < (250 / 2)) {
+  1035      115  0CFA               	movlw	250
+  1036      116  0034               	movwf	___lwmod@divisor
+  1037      117  0C00               	movlw	0
+  1038      118  0035               	movwf	___lwmod@divisor+1
+  1039      119  020A               	movf	_system_timer_ms+1,w	;volatile
+  1040      11A  0037               	movwf	___lwmod@dividend+1
+  1041      11B  0209               	movf	_system_timer_ms,w	;volatile
+  1042      11C  0036               	movwf	___lwmod@dividend
+  1043      11D  091D               	fcall	entry____lwmod
+  1044      11E  0C00               	movlw	0
+  1045      11F  0095               	subwf	?___lwmod+1,w
+  1046      120  0C7D               	movlw	125
+  1047      121  0643               	skipnz
+  1048      122  0094               	subwf	?___lwmod,w
+  1049      123  0603               	skipnc
+  1050      124  0B26               	goto	u261
+  1051      125  0B27               	goto	u260
+  1052      126                     u261:
+  1053      126  0B29               	goto	l868
+  1054      127                     u260:
+  1055      127                     l866:
+  1056                           
+  1057                           ;picfix_508.c: 93:         GP0 = 1;
+  1058      127  0506               	bsf	6,0	;volatile
+  1059                           
+  1060                           ;picfix_508.c: 94:     } else {
+  1061      128  0B2A               	goto	l40
+  1062      129                     l868:
+  1063                           
+  1064                           ;picfix_508.c: 95:         GP0 = 0;
+  1065      129  0406               	bcf	6,0	;volatile
+  1066      12A                     l40:
+  1067      12A  0800               	retlw	0
+  1068      12B                     __end_of_picfix_startup_indicate:
+  1069                           
+  1070                           	psect	text11
+  1071      1BF                     __ptext11:	
+  1072 ;; *************** function ___lwmod *****************
+  1073 ;; Defined at:
+  1074 ;;		line 5 in file "C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\lwmod.c"
+  1075 ;; Parameters:    Size  Location     Type
+  1076 ;;  divisor         2    0[BANK0 ] unsigned int 
+  1077 ;;  dividend        2    2[BANK0 ] unsigned int 
+  1078 ;; Auto vars:     Size  Location     Type
+  1079 ;;  counter         1    4[BANK0 ] unsigned char 
+  1080 ;; Return value:  Size  Location     Type
+  1081 ;;                  2    0[BANK0 ] unsigned int 
+  1082 ;; Registers used:
+  1083 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+0, btemp+1
+  1084 ;; Tracked objects:
+  1085 ;;		On entry : 0/0
+  1086 ;;		On exit  : 0/0
+  1087 ;;		Unchanged: 0/0
+  1088 ;; Data sizes:     COMMON   BANK0
+  1089 ;;      Params:         0       4
+  1090 ;;      Locals:         0       1
+  1091 ;;      Temps:          0       0
+  1092 ;;      Totals:         0       5
+  1093 ;;Total ram usage:        5 bytes
+  1094 ;; Hardware stack levels used: 1
+  1095 ;; This function calls:
+  1096 ;;		Nothing
+  1097 ;; This function is called by:
+  1098 ;;		_picfix_startup_indicate
+  1099 ;; This function uses a non-reentrant model
+  1100 ;;
+  1101                           
+  1102      1BF                     ___lwmod:	
+  1103                           ;psect for function ___lwmod
+  1104                           
+  1105      1BF                     l842:
+  1106      1BF  0214               	movf	___lwmod@divisor,w
+  1107      1C0  0115               	iorwf	___lwmod@divisor+1,w
+  1108      1C1  0643               	btfsc	3,2
+  1109      1C2  0BC4               	goto	u201
+  1110      1C3  0BC5               	goto	u200
+  1111      1C4                     u201:
+  1112      1C4  0BFA               	goto	l860
+  1113      1C5                     u200:
+  1114      1C5                     l844:
+  1115      1C5  0C01               	movlw	1
+  1116      1C6  0038               	movwf	___lwmod@counter
+  1117      1C7  0BD1               	goto	l850
+  1118      1C8                     l846:
+  1119      1C8  0C01               	movlw	1
+  1120      1C9  003C               	movwf	btemp
+  1121      1CA                     u215:
+  1122      1CA  0403               	clrc
+  1123      1CB  0374               	rlf	___lwmod@divisor,f
+  1124      1CC  0375               	rlf	___lwmod@divisor+1,f
+  1125      1CD  02FC               	decfsz	btemp,f
+  1126      1CE  0BCA               	goto	u215
+  1127      1CF                     l848:
+  1128      1CF  0C01               	movlw	1
+  1129      1D0  01F8               	addwf	___lwmod@counter,f
+  1130      1D1                     l850:
+  1131      1D1  07F5               	btfss	___lwmod@divisor+1,7
+  1132      1D2  0BD4               	goto	u221
+  1133      1D3  0BD5               	goto	u220
+  1134      1D4                     u221:
+  1135      1D4  0BC8               	goto	l846
+  1136      1D5                     u220:
+  1137      1D5                     l852:
+  1138      1D5  0215               	movf	___lwmod@divisor+1,w
+  1139      1D6  003D               	movwf	btemp+1
+  1140      1D7  0214               	movf	___lwmod@divisor,w
+  1141      1D8  003C               	movwf	btemp
+  1142      1D9  021D               	movf	wtemp0+1,w
+  1143      1DA  0097               	subwf	___lwmod@dividend+1,w
+  1144      1DB  0743               	skipz
+  1145      1DC  0BDF               	goto	u235
+  1146      1DD  021C               	movf	wtemp0,w
+  1147      1DE  0096               	subwf	___lwmod@dividend,w
+  1148      1DF                     u235:
+  1149      1DF  0703               	skipc
+  1150      1E0  0BE2               	goto	u231
+  1151      1E1  0BE3               	goto	u230
+  1152      1E2                     u231:
+  1153      1E2  0BED               	goto	l856
+  1154      1E3                     u230:
+  1155      1E3                     l854:
+  1156      1E3  0215               	movf	___lwmod@divisor+1,w
+  1157      1E4  003D               	movwf	btemp+1
+  1158      1E5  0214               	movf	___lwmod@divisor,w
+  1159      1E6  003C               	movwf	btemp
+  1160      1E7  021C               	movf	wtemp0,w
+  1161      1E8  00B6               	subwf	___lwmod@dividend,f
+  1162      1E9  021D               	movf	wtemp0+1,w
+  1163      1EA  0703               	skipc
+  1164      1EB  00F7               	decf	___lwmod@dividend+1,f
+  1165      1EC  00B7               	subwf	___lwmod@dividend+1,f
+  1166      1ED                     l856:
+  1167      1ED  0C01               	movlw	1
+  1168      1EE  003C               	movwf	btemp
+  1169      1EF                     u245:
+  1170      1EF  0403               	clrc
+  1171      1F0  0335               	rrf	___lwmod@divisor+1,f
+  1172      1F1  0334               	rrf	___lwmod@divisor,f
+  1173      1F2  02FC               	decfsz	btemp,f
+  1174      1F3  0BEF               	goto	u245
+  1175      1F4                     l858:
+  1176      1F4  0C01               	movlw	1
+  1177      1F5  00B8               	subwf	___lwmod@counter,f
+  1178      1F6  0743               	btfss	3,2
+  1179      1F7  0BF9               	goto	u251
+  1180      1F8  0BFA               	goto	u250
+  1181      1F9                     u251:
+  1182      1F9  0BD5               	goto	l852
+  1183      1FA                     u250:
+  1184      1FA                     l860:
+  1185      1FA  0217               	movf	___lwmod@dividend+1,w
+  1186      1FB  0035               	movwf	?___lwmod+1
+  1187      1FC  0216               	movf	___lwmod@dividend,w
+  1188      1FD  0034               	movwf	?___lwmod
+  1189      1FE                     l424:
+  1190      1FE  0800               	retlw	0
+  1191      1FF                     __end_of___lwmod:
+  1192                           
+  1193                           	psect	text12
+  1194      146                     __ptext12:	
+  1195 ;; *************** function _picfix_handle_monitoring *****************
+  1196 ;; Defined at:
+  1197 ;;		line 58 in file "picfix_core.c"
+  1198 ;; Parameters:    Size  Location     Type
+  1199 ;;		None
+  1200 ;; Auto vars:     Size  Location     Type
+  1201 ;;		None
+  1202 ;; Return value:  Size  Location     Type
+  1203 ;;                  1   86[None  ] void 
+  1204 ;; Registers used:
+  1205 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+0, btemp+1, btemp+2, btemp+3, pclath, cstack
+  1206 ;; Tracked objects:
+  1207 ;;		On entry : 0/0
+  1208 ;;		On exit  : 0/0
+  1209 ;;		Unchanged: 0/0
+  1210 ;; Data sizes:     COMMON   BANK0
+  1211 ;;      Params:         0       0
+  1212 ;;      Locals:         0       0
+  1213 ;;      Temps:          0       1
+  1214 ;;      Totals:         0       1
+  1215 ;;Total ram usage:        1 bytes
+  1216 ;; Hardware stack levels used: 1
+  1217 ;; Hardware stack levels required when called: 1
+  1218 ;; This function calls:
+  1219 ;;		_picfix_monitor_indicate
+  1220 ;;		_picfix_read_signal
+  1221 ;; This function is called by:
+  1222 ;;		_picfix_core_update
+  1223 ;; This function uses a non-reentrant model
+  1224 ;;
+  1225                           
+  1226      146                     _picfix_handle_monitoring:	
+  1227                           ;psect for function _picfix_handle_monitoring
+  1228                           
+  1229      146                     l768:
+  1230                           
+  1231                           ;picfix_core.c: 60:     picfix_monitor_indicate();
+  1232      146  0920               	fcall	entry__picfix_monitor_indicate
+  1233      147                     l770:
+  1234                           
+  1235                           ;picfix_core.c: 67:         if(picfix_read_signal() == 0) {
+  1236      147  091F               	fcall	entry__picfix_read_signal
+  1237      148  0214               	movf	?_picfix_read_signal,w
+  1238      149  0039               	movwf	??_picfix_handle_monitoring
+  1239      14A  0219               	movf	??_picfix_handle_monitoring,w
+  1240      14B  0743               	btfss	3,2
+  1241      14C  0B4E               	goto	u171
+  1242      14D  0B4F               	goto	u170
+  1243      14E                     u171:
+  1244      14E  0B64               	goto	l778
+  1245      14F                     u170:
+  1246      14F                     l772:
+  1247                           
+  1248                           ;picfix_core.c: 69:             error_timer_ms++;
+  1249      14F  0C01               	movlw	1
+  1250      150  003C               	movwf	btemp
+  1251      151  007D               	clrf	btemp+1
+  1252      152  021C               	movf	wtemp0,w
+  1253      153  01E7               	addwf	_error_timer_ms,f	;volatile
+  1254      154  0603               	skipnc
+  1255      155  02A8               	incf	_error_timer_ms+1,f	;volatile
+  1256      156  021D               	movf	wtemp0+1,w
+  1257      157  01E8               	addwf	_error_timer_ms+1,f	;volatile
+  1258      158                     l774:
+  1259                           
+  1260                           ;picfix_core.c: 72:             if(error_timer_ms >= 2000) {
+  1261      158  0C07               	movlw	7
+  1262      159  0088               	subwf	_error_timer_ms+1,w	;volatile
+  1263      15A  0CD0               	movlw	208
+  1264      15B  0643               	skipnz
+  1265      15C  0087               	subwf	_error_timer_ms,w	;volatile
+  1266      15D  0703               	skipc
+  1267      15E  0B60               	goto	u181
+  1268      15F  0B61               	goto	u180
+  1269      160                     u181:
+  1270      160  0B66               	goto	l124
+  1271      161                     u180:
+  1272      161                     l776:
+  1273                           
+  1274                           ;picfix_core.c: 73:                 current_state = STATE_TRIGGERED;
+  1275      161  0C02               	movlw	2
+  1276      162  0033               	movwf	_current_state	;volatile
+  1277      163  0B66               	goto	l124
+  1278      164                     l778:
+  1279                           
+  1280                           ;picfix_core.c: 77:             error_timer_ms = 0;
+  1281      164  0067               	clrf	_error_timer_ms	;volatile
+  1282      165  0068               	clrf	_error_timer_ms+1	;volatile
+  1283      166                     l124:
+  1284      166  0800               	retlw	0
+  1285      167                     __end_of_picfix_handle_monitoring:
+  1286                           
+  1287                           	psect	text13
+  1288      18C                     __ptext13:	
+  1289 ;; *************** function _picfix_read_signal *****************
+  1290 ;; Defined at:
+  1291 ;;		line 146 in file "picfix_508.c"
+  1292 ;; Parameters:    Size  Location     Type
+  1293 ;;		None
+  1294 ;; Auto vars:     Size  Location     Type
+  1295 ;;  sample3         1    4[BANK0 ] unsigned char 
+  1296 ;;  sample2         1    3[BANK0 ] unsigned char 
+  1297 ;;  sample1         1    2[BANK0 ] unsigned char 
+  1298 ;; Return value:  Size  Location     Type
+  1299 ;;                  1    0[BANK0 ] unsigned char 
+  1300 ;; Registers used:
+  1301 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+0, btemp+1, btemp+2, btemp+3
+  1302 ;; Tracked objects:
+  1303 ;;		On entry : 0/0
+  1304 ;;		On exit  : 0/0
+  1305 ;;		Unchanged: 0/0
+  1306 ;; Data sizes:     COMMON   BANK0
+  1307 ;;      Params:         0       1
+  1308 ;;      Locals:         0       3
+  1309 ;;      Temps:          0       1
+  1310 ;;      Totals:         0       5
+  1311 ;;Total ram usage:        5 bytes
+  1312 ;; Hardware stack levels used: 1
+  1313 ;; This function calls:
+  1314 ;;		Nothing
+  1315 ;; This function is called by:
+  1316 ;;		_picfix_handle_monitoring
+  1317 ;; This function uses a non-reentrant model
+  1318 ;;
+  1319                           
+  1320      18C                     _picfix_read_signal:	
+  1321                           ;psect for function _picfix_read_signal
+  1322                           
+  1323      18C                     l736:
+  1324                           
+  1325                           ;picfix_508.c: 147:     uint8_t sample1, sample2, sample3;;picfix_508.c: 150:     sample
+      +                          1 = GP3;
+  1326      18C  0C00               	movlw	0
+  1327      18D  0666               	btfsc	6,3	;volatile
+  1328      18E  0C01               	movlw	1
+  1329      18F  0036               	movwf	picfix_read_signal@sample1
+  1330                           
+  1331                           ;picfix_508.c: 151:     _delay((unsigned long)((10)*(4000000/4000000.0)));
+  1332      190  0C03               	movlw	3
+  1333      191  0035               	movwf	??_picfix_read_signal
+  1334      192                     u297:
+  1335      192  02F5               	decfsz	??_picfix_read_signal,f
+  1336      193  0B92               	goto	u297
+  1337                           
+  1338                           ;picfix_508.c: 152:     sample2 = GP3;
+  1339      194  0C00               	movlw	0
+  1340      195  0666               	btfsc	6,3	;volatile
+  1341      196  0C01               	movlw	1
+  1342      197  0037               	movwf	picfix_read_signal@sample2
+  1343                           
+  1344                           ;picfix_508.c: 153:     _delay((unsigned long)((10)*(4000000/4000000.0)));
+  1345      198  0C03               	movlw	3
+  1346      199  0035               	movwf	??_picfix_read_signal
+  1347      19A                     u307:
+  1348      19A  02F5               	decfsz	??_picfix_read_signal,f
+  1349      19B  0B9A               	goto	u307
+  1350                           
+  1351                           ;picfix_508.c: 154:     sample3 = GP3;
+  1352      19C  0C00               	movlw	0
+  1353      19D  0666               	btfsc	6,3	;volatile
+  1354      19E  0C01               	movlw	1
+  1355      19F  0038               	movwf	picfix_read_signal@sample3
+  1356      1A0                     l738:
+  1357                           
+  1358                           ;picfix_508.c: 157:     if((sample1 + sample2 + sample3) >= 2) {
+  1359      1A0  0216               	movf	picfix_read_signal@sample1,w
+  1360      1A1  01D7               	addwf	picfix_read_signal@sample2,w
+  1361      1A2  003C               	movwf	wtemp0
+  1362      1A3  007D               	clrf	wtemp0+1
+  1363      1A4  037D               	rlf	wtemp0+1,f
+  1364      1A5  0218               	movf	picfix_read_signal@sample3,w
+  1365      1A6  01DC               	addwf	wtemp0,w
+  1366      1A7  003E               	movwf	wtemp1
+  1367      1A8  0C00               	movlw	0
+  1368      1A9  0603               	skipnc
+  1369      1AA  0C01               	movlw	1
+  1370      1AB  01DD               	addwf	wtemp0+1,w
+  1371      1AC  003F               	movwf	wtemp1+1
+  1372      1AD  021F               	movf	wtemp1+1,w
+  1373      1AE  0F80               	xorlw	128
+  1374      1AF  003C               	movwf	btemp
+  1375      1B0  0C80               	movlw	128
+  1376      1B1  009C               	subwf	btemp,w
+  1377      1B2  0743               	skipz
+  1378      1B3  0BB6               	goto	u145
+  1379      1B4  0C02               	movlw	2
+  1380      1B5  009E               	subwf	wtemp1,w
+  1381      1B6                     u145:
+  1382      1B6  0703               	skipc
+  1383      1B7  0BB9               	goto	u141
+  1384      1B8  0BBA               	goto	u140
+  1385      1B9                     u141:
+  1386      1B9  0BBD               	goto	l746
+  1387      1BA                     u140:
+  1388      1BA                     l740:
+  1389                           
+  1390                           ;picfix_508.c: 158:         return 1;
+  1391      1BA  0C01               	movlw	1
+  1392      1BB  0034               	movwf	?_picfix_read_signal
+  1393      1BC  0BBE               	goto	l63
+  1394      1BD                     l746:
+  1395                           
+  1396                           ;picfix_508.c: 160:         return 0;
+  1397      1BD  0074               	clrf	?_picfix_read_signal
+  1398      1BE                     l63:
+  1399      1BE  0800               	retlw	0
+  1400      1BF                     __end_of_picfix_read_signal:
+  1401                           
+  1402                           	psect	text14
+  1403      167                     __ptext14:	
+  1404 ;; *************** function _picfix_monitor_indicate *****************
+  1405 ;; Defined at:
+  1406 ;;		line 103 in file "picfix_508.c"
+  1407 ;; Parameters:    Size  Location     Type
+  1408 ;;		None
+  1409 ;; Auto vars:     Size  Location     Type
+  1410 ;;		None
+  1411 ;; Return value:  Size  Location     Type
+  1412 ;;                  1   42[None  ] void 
+  1413 ;; Registers used:
+  1414 ;;		wreg, fsr0l, fsr0h, status,2, status,0
+  1415 ;; Tracked objects:
+  1416 ;;		On entry : 0/0
+  1417 ;;		On exit  : 0/0
+  1418 ;;		Unchanged: 0/0
+  1419 ;; Data sizes:     COMMON   BANK0
+  1420 ;;      Params:         0       0
+  1421 ;;      Locals:         0       0
+  1422 ;;      Temps:          0       1
+  1423 ;;      Totals:         0       1
+  1424 ;;Total ram usage:        1 bytes
+  1425 ;; Hardware stack levels used: 1
+  1426 ;; This function calls:
+  1427 ;;		Nothing
+  1428 ;; This function is called by:
+  1429 ;;		_picfix_handle_monitoring
+  1430 ;; This function uses a non-reentrant model
+  1431 ;;
+  1432                           
+  1433      167                     _picfix_monitor_indicate:	
+  1434                           ;psect for function _picfix_monitor_indicate
+  1435                           
+  1436      167                     l714:
+  1437                           
+  1438                           ;picfix_508.c: 105:     static uint8_t led_brightness = 0;;picfix_508.c: 106:     static
+      +                           int8_t led_direction = 1;;picfix_508.c: 109:     if((watchdog_counter % 8) == 0) {
+  1439      167  0210               	movf	_watchdog_counter,w	;volatile
+  1440      168  0E07               	andlw	7
+  1441      169  0743               	btfss	3,2
+  1442      16A  0B6C               	goto	u101
+  1443      16B  0B6D               	goto	u100
+  1444      16C                     u101:
+  1445      16C  0B7F               	goto	l726
+  1446      16D                     u100:
+  1447      16D                     l716:
+  1448                           
+  1449                           ;picfix_508.c: 110:         led_brightness += led_direction;
+  1450      16D  021A               	movf	picfix_monitor_indicate@led_direction,w
+  1451      16E  01EC               	addwf	picfix_monitor_indicate@led_brightness,f
+  1452      16F                     l718:
+  1453                           
+  1454                           ;picfix_508.c: 111:         if(led_brightness >= 15) {
+  1455      16F  0C0F               	movlw	15
+  1456      170  008C               	subwf	picfix_monitor_indicate@led_brightness,w
+  1457      171  0703               	skipc
+  1458      172  0B74               	goto	u111
+  1459      173  0B75               	goto	u110
+  1460      174                     u111:
+  1461      174  0B78               	goto	l722
+  1462      175                     u110:
+  1463      175                     l720:
+  1464                           
+  1465                           ;picfix_508.c: 112:             led_direction = -1;
+  1466      175  0CFF               	movlw	-1
+  1467      176  003A               	movwf	picfix_monitor_indicate@led_direction
+  1468                           
+  1469                           ;picfix_508.c: 113:         } else if(led_brightness == 0) {
+  1470      177  0B7F               	goto	l726
+  1471      178                     l722:
+  1472      178  020C               	movf	picfix_monitor_indicate@led_brightness,w
+  1473      179  0743               	btfss	3,2
+  1474      17A  0B7C               	goto	u121
+  1475      17B  0B7D               	goto	u120
+  1476      17C                     u121:
+  1477      17C  0B7F               	goto	l726
+  1478      17D                     u120:
+  1479      17D                     l724:
+  1480                           
+  1481                           ;picfix_508.c: 114:             led_direction = 1;
+  1482      17D  0C01               	movlw	1
+  1483      17E  003A               	movwf	picfix_monitor_indicate@led_direction
+  1484      17F                     l726:
+  1485                           
+  1486                           ;picfix_508.c: 120:     if((watchdog_counter % 16) < led_brightness) {
+  1487      17F  0C0F               	movlw	15
+  1488      180  0150               	andwf	_watchdog_counter,w	;volatile
+  1489      181  0034               	movwf	??_picfix_monitor_indicate
+  1490      182  020C               	movf	picfix_monitor_indicate@led_brightness,w
+  1491      183  0094               	subwf	??_picfix_monitor_indicate,w
+  1492      184  0603               	skipnc
+  1493      185  0B87               	goto	u131
+  1494      186  0B88               	goto	u130
+  1495      187                     u131:
+  1496      187  0B8A               	goto	l730
+  1497      188                     u130:
+  1498      188                     l728:
+  1499                           
+  1500                           ;picfix_508.c: 121:         GP0 = 1;
+  1501      188  0506               	bsf	6,0	;volatile
+  1502                           
+  1503                           ;picfix_508.c: 122:     } else {
+  1504      189  0B8B               	goto	l53
+  1505      18A                     l730:
+  1506                           
+  1507                           ;picfix_508.c: 123:         GP0 = 0;
+  1508      18A  0406               	bcf	6,0	;volatile
+  1509      18B                     l53:
+  1510      18B  0800               	retlw	0
+  1511      18C                     __end_of_picfix_monitor_indicate:
+  1512      000                     ___latbits      equ	0
+  1513      01C                     btemp           set	28	;btemp
+  1514      01C                     wtemp0          set	28
+  1515      01E                     wtemp1          set	30
+  1516      01C                     ttemp0          set	28
+  1517      01C                     ltemp0          set	28
+  1518                           
+  1519                           	psect	config
+  1520                           
+  1521                           ;Config register CONFIG @ 0xFFF
+  1522                           ;	Oscillator Selection bits
+  1523                           ;	OSC = IntRC, internal RC oscillator
+  1524                           ;	Watchdog Timer Enable bit
+  1525                           ;	WDT = ON, WDT enabled
+  1526                           ;	Code Protection bit
+  1527                           ;	CP = OFF, Code protection off
+  1528                           ;	GP3/MCLR Pin Function Select bit
+  1529                           ;	MCLRE = OFF, GP3/MCLR pin function is digital input, MCLR internally tied to VDD
+  1530      FFF                     	org	4095
+  1531      FFF  0FEE               	dw	4078
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        1
+    BSS         13
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMMON            0      0       0
+    BANK0            23      6      20
+
+Pointer List with Targets:
+
+    None.
+
+Critical Paths under _main in COMMON
+
+    None.
+
+Critical Paths under _main in BANK0
+
+    _picfix_core_update->_picfix_handle_monitoring
+    _picfix_startup_indicate->___lwmod
+    _picfix_handle_monitoring->_picfix_read_signal
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 0     0      0      78
+                 _picfix_core_update
+                        _picfix_init
+         _picfix_timer_update_simple
+              _picfix_watchdog_clear
+ ---------------------------------------------------------------------------------
+ (1) _picfix_timer_update_simple                           1     1      0       0
+                                              0 BANK0      1     1      0
+                _picfix_timer_update
+ ---------------------------------------------------------------------------------
+ (2) _picfix_timer_update                                  0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _picfix_init                                          0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _picfix_core_update                                   0     0      0      78
+           _picfix_handle_monitoring
+              _picfix_handle_startup
+            _picfix_handle_triggered
+ ---------------------------------------------------------------------------------
+ (2) _picfix_handle_triggered                              0     0      0       0
+              _picfix_activate_reset
+              _picfix_error_indicate
+              _picfix_watchdog_clear
+ ---------------------------------------------------------------------------------
+ (1) _picfix_watchdog_clear                                0     0      0       0
+ ---------------------------------------------------------------------------------
+ (3) _picfix_error_indicate                                0     0      0       0
+ ---------------------------------------------------------------------------------
+ (3) _picfix_activate_reset                                0     0      0       0
+ ---------------------------------------------------------------------------------
+ (2) _picfix_handle_startup                                0     0      0       9
+            _picfix_startup_indicate
+ ---------------------------------------------------------------------------------
+ (3) _picfix_startup_indicate                              0     0      0       9
+                            ___lwmod
+ ---------------------------------------------------------------------------------
+ (4) ___lwmod                                              5     1      4       9
+                                              0 BANK0      5     1      4
+ ---------------------------------------------------------------------------------
+ (2) _picfix_handle_monitoring                             1     1      0      69
+                                              5 BANK0      1     1      0
+            _picfix_monitor_indicate
+                 _picfix_read_signal
+ ---------------------------------------------------------------------------------
+ (3) _picfix_read_signal                                   5     4      1      69
+                                              0 BANK0      5     4      1
+ ---------------------------------------------------------------------------------
+ (3) _picfix_monitor_indicate                              1     1      0       0
+                                              0 BANK0      1     1      0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 4
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _picfix_core_update
+     _picfix_handle_monitoring
+       _picfix_monitor_indicate
+       _picfix_read_signal
+     _picfix_handle_startup
+       _picfix_startup_indicate
+         ___lwmod
+     _picfix_handle_triggered
+       _picfix_activate_reset
+       _picfix_error_indicate
+       _picfix_watchdog_clear
+   _picfix_init
+   _picfix_timer_update_simple
+     _picfix_timer_update
+   _picfix_watchdog_clear
+
+Address spaces:
+Name               Size   Autos  Total    Usage
+BITCOMMON            0      0       0      0.0%
+BITBANK0            23      0       0      0.0%
+COMMON               0      0       0      0.0%
+BANK0               23      6      20     87.0%
+STACK                0      0       0      0.0%
+DATA                 0      0      20      0.0%
+
+
+Microchip Technology PIC Macro Assembler V3.00 build 20241204225717 
+Symbol Table                                                                                   Wed Jul 30 02:44:02 2025
+
+                                   l40 012A                                     l35 0103  
+                                   l53 018B                                     l63 01BE  
+                                   l56 00C5                                     l74 0114  
+                                   l59 00C3                                     l68 00E4  
+            entry__picfix_timer_update 0014                                     fsr 0004  
+      __end_of_picfix_handle_triggered 00CA            entry__picfix_handle_startup 001B  
+                                  l114 0145                                    l130 00D9  
+                                  l124 0166                                    l118 00F3  
+                                  l127 00C9                                    l424 01FE  
+                                  l720 0175                                    l800 0100  
+                                  l730 018A                                    l722 0178  
+                                  l714 0167                                    l802 0101  
+                                  l810 0112                                    l724 017D  
+                                  l716 016D                                    l740 01BA  
+                                  l732 00C4                                    l812 0113  
+                                  l804 0104                                    l900 00CD  
+                                  l718 016F                                    l726 017F  
+                                  l734 00C2                                    l750 00DA  
+                                  l806 010B                                    l728 0188  
+                                  l736 018C                                    l752 00DB  
+                                  l808 010D                                    l746 01BD  
+                                  l738 01A0                                    l770 0147  
+                                  l850 01D1                                    l842 01BF  
+                                  l754 00DD                                    l906 013A  
+                                  l772 014F                                    l852 01D5  
+                                  l844 01C5                                    l860 01FA  
+                                  l756 00E3                                    l780 00C6  
+                                  l774 0158                                    l854 01E3  
+                                  l846 01C8                                    l870 00E5  
+                                  l790 00F9                                    l782 00F4  
+                                  l758 00D0                                    l776 0161  
+                                  l768 0146                                    l856 01ED  
+                                  l848 01CF                                    l864 0115  
+                                  l872 00E6                                    l880 012C  
+                                  l792 00FB                                    l784 00F5  
+                                  l778 0164                                    l858 01F4  
+                                  l866 0127                                    l874 00EF  
+                                  l882 012E                                    l794 00FD  
+                                  l786 00F7                                    l868 0129  
+                                  l876 00F1                                    l884 0130  
+                                  l796 00FE                                    l788 00F8  
+                                  _GP0 0030                                    _GP1 0031  
+                                  l878 012B                                    l798 00FF  
+                                  l894 00CA                                    _GP3 0033  
+                                  l888 0132                                    l896 00CB  
+                                  l898 00CC                                    u100 016D  
+                                  u101 016C                                    u110 0175  
+                                  u111 0174                                    u120 017D  
+                                  u200 01C5                                    u121 017C  
+                                  u201 01C4                                    u130 0188  
+                                  u131 0187                                    u140 01BA  
+                                  u220 01D5                                    u141 01B9  
+                                  u221 01D4                                    u230 01E3  
+                                  u150 00E3                                    u231 01E2  
+                                  u215 01CA                                    u151 00E2  
+                                  u145 01B6                                    u170 014F  
+                                  u250 01FA                                    u307 019A  
+                                  u171 014E                                    u251 01F9  
+                                  u235 01DF                                    u180 0161  
+                                  u260 0127                                    u181 0160  
+                                  u245 01EF                                    u261 0126  
+                                  u270 00EF                                    u190 0112  
+                                  u271 00EE                                    u191 0111  
+                                  u287 0106                                    u297 0192  
+                                  indf 0000          __end_of_picfix_watchdog_clear 00E5  
+                                 _TRIS 0006                                   _main 00CA  
+                                 btemp 001C                                   start 0000  
+       entry__picfix_handle_monitoring 001E                       _watchdog_counter 0010  
+                                ?_main 0014                        __end_of___lwmod 01FF  
+                                ltemp0 001C            entry__picfix_error_indicate 0019  
+                                ttemp0 001C                                  status 0003  
+                                wtemp0 001C                                  wtemp1 001E  
+                         ?_picfix_init 0014            ?_picfix_timer_update_simple 0014  
+              _picfix_monitor_indicate 0167                        __initialization 0001  
+        entry__picfix_startup_indicate 001C                           __end_of_main 00D0  
+              ??_picfix_activate_reset 0000       entry__picfix_timer_update_simple 0013  
+                               ??_main 0000             __end_of_picfix_core_update 0146  
+            ?_picfix_handle_monitoring 0014               ?_picfix_startup_indicate 0014  
+                _picfix_handle_startup 00E5            entry__picfix_watchdog_clear 0018  
+                      _system_timer_ms 0009                              ??___lwmod 0000  
+                  _signal_stable_count 000F             __end_of_picfix_read_signal 01BF  
+              __end_of__initialization 0008              ??_picfix_monitor_indicate 0014  
+        entry__picfix_handle_triggered 0017                         __pcstackCOMMON 0000  
+                         __pidataBANK0 0021                  _picfix_error_indicate 00C4  
+             ?_picfix_handle_triggered 0014                             __pbssBANK0 0007  
+                        _current_state 0013                 ?_picfix_handle_startup 0014  
+                           __pmaintext 00CA                        _error_confirmed 000E  
+                  _picfix_timer_update 00D0        __end_of_picfix_monitor_indicate 018C  
+                 ?_picfix_timer_update 0014                  _picfix_watchdog_clear 00DA  
+                    entry__picfix_init 0015                                ___lwmod 01BF  
+                              __ptext1 0104                                __ptext2 00D0  
+                              __ptext3 00F4                                __ptext4 012B  
+                              __ptext5 00C6                                __ptext6 00DA  
+                              __ptext7 00C4                                __ptext8 00C2  
+                              __ptext9 00E5          __end_of_picfix_activate_reset 00C4  
+               ?_picfix_error_indicate 0014                                clrloop0 000B  
+                 end_of_initialization 0008                  ??_picfix_timer_update 0000  
+                   _picfix_core_update 012B                    ?_picfix_core_update 0014  
+             entry__picfix_core_update 0016                   ??_picfix_core_update 0000  
+               ?_picfix_watchdog_clear 0014                     _picfix_read_signal 018C  
+             _picfix_handle_monitoring 0146                    ?_picfix_read_signal 0014  
+                  start_initialization 0001              picfix_read_signal@sample1 0016  
+            picfix_read_signal@sample2 0017              picfix_read_signal@sample3 0018  
+             entry__picfix_read_signal 001F                ??_picfix_handle_startup 0000  
+          entry__picfix_activate_reset 001A                   ??_picfix_read_signal 0015  
+        entry__picfix_monitor_indicate 0020                            __pdataBANK0 001A  
+                            ___latbits 0000                          __pcstackBANK0 0014  
+             ?_picfix_monitor_indicate 0014                          ??_picfix_init 0000  
+         ??_picfix_timer_update_simple 0014                              __pjmp_tab 0013  
+              _picfix_startup_indicate 0115                               ?___lwmod 0014  
+              ??_picfix_error_indicate 0000                              _led_state 0011  
+                       _error_timer_ms 0007  picfix_monitor_indicate@led_brightness 000C  
+                            clear_ram0 000A                    __end_of_picfix_init 0104  
+picfix_timer_update_simple@delay_count 000B                  _picfix_activate_reset 00C2  
+          __end_of_picfix_timer_update 00DA                ??_picfix_watchdog_clear 0000  
+           ??_picfix_handle_monitoring 0019              ??_picfix_startup_indicate 0000  
+              _picfix_handle_triggered 00C6                          entry____lwmod 001D  
+                             __ptext10 0115                               __ptext11 01BF  
+                             __ptext12 0146                               __ptext13 018C  
+                             __ptext14 0167                            _error_state 000D  
+ picfix_monitor_indicate@led_direction 001A          __end_of_picfix_handle_startup 00F4  
+   __end_of_picfix_timer_update_simple 0115             _picfix_timer_update_simple 0104  
+                          _picfix_init 00F4                 ?_picfix_activate_reset 0014  
+      __end_of_picfix_startup_indicate 012B                          _flash_counter 0012  
+                     ___lwmod@dividend 0016              ??_picfix_handle_triggered 0000  
+        __end_of_picfix_error_indicate 00C6                        ___lwmod@divisor 0014  
+                      ___lwmod@counter 0018       __end_of_picfix_handle_monitoring 0167  

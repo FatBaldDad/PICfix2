@@ -1,0 +1,98 @@
+
+
+Microchip MPLAB XC8 Assembler V3.00 build 20241204225717 
+                                                                                                           Thu Jul 31 11:53:24 2025
+
+
+     1                           	processor	12F508
+     2                           	pagewidth 132
+     3                           	psect	code,global,class=CODE,space=0,delta=2
+     4                           	psect	powerup,global,class=CODE,space=0,delta=2
+     5                           	psect	reset_vec,global,class=CODE,space=0,delta=2
+     6                           	psect	maintext,global,class=CODE,space=0,delta=2
+     7                           	psect	reset_wrap,global,class=ENTRY,space=0,delta=2
+     8                           	psect	text,global,class=CODE,space=0,delta=2
+     9                           	psect	functab,global,class=ENTRY,space=0,delta=2
+    10                           	psect	init,global,class=ENTRY,space=0,delta=2
+    11                           	psect	cinit,global,class=ENTRY,space=0,delta=2
+    12                           	psect	end_init,global,class=ENTRY,space=0,delta=2
+    13                           	psect	clrtext,global,class=ENTRY,space=0,delta=2
+    14                           	psect	jmp_tab,global,class=ENTRY,space=0,delta=2
+    15                           	psect	strings,global,class=STRING,space=0,delta=2
+    16                           	psect	stack,global,class=STACK,space=2,delta=1,noexec
+    17                           	psect	heap,global,class=HEAP,space=7,delta=1,noexec
+    18                           	psect	bank0,global,class=BANK0,space=1,delta=1
+    19                           	psect	ram,global,class=RAM,space=1,delta=1
+    20                           	psect	abs1,global,class=ABS1,space=1,delta=1
+    21                           	psect	common,global,class=COMMON,space=1,delta=1
+    22                           	psect	sfr0,global,class=SFR0,space=1,delta=1
+    23                           
+    24                           	psect	reset_vec
+    25      1FF                     reset_vec:
+    26      1FF                     	ds	1	;oscillator constant would be pre-programmed here
+    27                           
+    28                           	psect	maintext
+    29                           
+    30                           ; Microchip MPLAB XC8 C Compiler V3.00
+    31                           ; Copyright (C) 2024 Microchip Technology Inc.
+    32                           ; Auto-generated runtime startup code for final link stage.
+    33                           ;
+    34                           ; Compiler options:
+    35                           ;
+    36                           ; -q --opt=none --chip=12f508 \
+    37                           ; I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c \
+    38                           ; I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_core.c \
+    39                           ; -opicfix_508.hex \
+    40                           ; --objdir=I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\build \
+    41                           ; --outdir=I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\build \
+    42                           ; -L--fixupoverflow=error --std=c99 --callgraph=none --warn=-3 \
+    43                           ; --errformat=%f:%l:%c: error: (%n) %s \
+    44                           ; --warnformat=%f:%l:%c: warning: (%n) %s \
+    45                           ; --msgformat=%f:%l:%c: advisory: (%n) %s
+    46                           ;
+    47      000                     C               set	0
+    48      002                     Z               set	2
+    49      002                     PCL             set	2
+    50      000                     INDF            set	0
+    51      003                     STATUS          equ	3
+    52      004                     FSR             equ	4
+    53      005                     OSCCAL          equ	5
+    54                           
+    55                           	psect	reset_wrap
+    56      000                     reset_wrap:
+    57      000  0064               	clrf	4	;select bank 0
+    58      001  0025               	movwf	5	;calibrate oscillator
+    59                           
+    60                           	psect	init
+    61      002                     start:
+    62                           
+    63                           	psect	end_init
+    64      002  0A03               	ljmp	start_initialization	;jump to C runtime clear & initialization
+    65                           
+    66                           	psect	strings
+    67      000                     ___stacklo      equ	0
+    68      000                     ___stackhi      equ	0
+    69                           
+    70                           	psect	stack
+    71      000                     ___sp:
+    72      000                     ___int_sp:
+    73      000                     ___stack_lo:
+    74      000                     ___stack_hi:
+    75      000                     ___int_stack_lo:
+    76      000                     ___int_stack_hi:
+    77                           
+    78                           	psect	heap
+    79                           
+    80                           ; No powerup routine
+    81                           ; No heap to be allocated
+    82      000                     ___heap_lo      equ	0
+    83      000                     ___heap_hi      equ	0
+
+
+Microchip Technology PIC Macro Assembler V3.00 build 20241204225717 
+Symbol Table                                                                                               Thu Jul 31 11:53:24 2025
+
+                 FSR 0004                 ___sp 0000                 _main 0147                 start 0002  
+         ___stack_hi 0000           ___stack_lo 0000       ___int_stack_hi 0000       ___int_stack_lo 0000  
+start_initialization 0003            ___heap_hi 0000            ___heap_lo 0000            ___stackhi 0000  
+          ___stacklo 0000             ___int_sp 0000            reset_wrap 0000             reset_vec 01FF  

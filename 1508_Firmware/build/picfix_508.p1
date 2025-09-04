@@ -1,0 +1,243 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"325 C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic12f508.h
+[v _TRIS `VWuc ~T0 @X0 0 e@6 ]
+"271
+[v _GPIO `Vuc ~T0 @X0 0 e@6 ]
+"321
+[v _OPTION `VWuc ~T0 @X0 0 e@0 ]
+"383
+[v _GP0 `Vb ~T0 @X0 0 e@48 ]
+"392
+[v _GP3 `Vb ~T0 @X0 0 e@51 ]
+"8 C:\Program Files\Microchip\xc8\v3.00\pic\include/builtins.h
+[v ___nop `(v ~T0 @X0 0 ef ]
+[p i ___nop ]
+[p mainexit ]
+"386 C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic12f508.h
+[v _GP1 `Vb ~T0 @X0 0 e@49 ]
+"52 C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic12f508.h
+[; <" INDF equ 00h ;# ">
+"72
+[; <" TMR0 equ 01h ;# ">
+"92
+[; <" PCL equ 02h ;# ">
+"112
+[; <" STATUS equ 03h ;# ">
+"187
+[; <" FSR equ 04h ;# ">
+"207
+[; <" OSCCAL equ 05h ;# ">
+"273
+[; <" GPIO equ 06h ;# ">
+"11 I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+[p x OSC  =  IntRC       ]
+"12
+[p x WDT  =  ON          ]
+"13
+[p x CP  =  OFF          ]
+"14
+[p x MCLRE  =  OFF       ]
+"17
+[v _counter `uc ~T0 @X0 1 s ]
+[i _counter
+-> -> 0 `i `uc
+]
+"20
+[v _picfix_init `(v ~T0 @X0 1 ef ]
+{
+[e :U _picfix_init ]
+[f ]
+"21
+[e = _TRIS -> -> 8 `i `uc ]
+"22
+[e = _GPIO -> -> 0 `i `uc ]
+"23
+[e = _OPTION -> -> 15 `i `uc ]
+"24
+[; <" clrwdt ;# ">
+"25
+[e :UE 22 ]
+}
+"28
+[v _picfix_monitor_indicate `(v ~T0 @X0 1 ef ]
+{
+[e :U _picfix_monitor_indicate ]
+[f ]
+"29
+[e $ ! < -> _counter `i -> 50 `i 24  ]
+{
+"30
+[e = _GP0 -> -> 1 `i `b ]
+"31
+}
+[e $U 25  ]
+[e :U 24 ]
+{
+"32
+[e = _GP0 -> -> 0 `i `b ]
+"33
+}
+[e :U 25 ]
+"35
+[e $ ! >= -> =+ _counter -> -> 1 `i `uc `i -> 255 `i 26  ]
+[e = _counter -> -> 0 `i `uc ]
+[e :U 26 ]
+"36
+[e :UE 23 ]
+}
+"39
+[v _picfix_read_signal `(uc ~T0 @X0 1 ef ]
+{
+[e :U _picfix_read_signal ]
+[f ]
+"40
+[v _sample1 `uc ~T0 @X0 1 a ]
+[v _sample2 `uc ~T0 @X0 1 a ]
+"42
+[e = _sample1 -> _GP3 `uc ]
+"43
+[e ( ___nop ..  ]
+[e ( ___nop ..  ]
+[e ( ___nop ..  ]
+[e ( ___nop ..  ]
+"44
+[e = _sample2 -> _GP3 `uc ]
+"46
+[e ) -> -> && != -> _sample1 `i -> 0 `i != -> _sample2 `i -> 0 `i `i `uc ]
+[e $UE 27  ]
+"47
+[e :UE 27 ]
+}
+[v $root$_main `(v ~T0 @X0 0 e ]
+"50
+[v _main `(v ~T0 @X0 1 ef ]
+{
+[e :U _main ]
+[f ]
+"51
+[v _error_count `uc ~T0 @X0 1 a ]
+[e = _error_count -> -> 0 `i `uc ]
+"52
+[e ( _picfix_init ..  ]
+"55
+{
+[v _i `uc ~T0 @X0 1 a ]
+[e = _i -> -> 0 `i `uc ]
+[e $ < -> _i `i -> 200 `i 29  ]
+[e $U 30  ]
+[e :U 29 ]
+{
+"57
+[e $ ! == % -> _i `i -> 25 `i -> 0 `i 32  ]
+{
+"58
+[e = _GP0 ! _GP0 ]
+"59
+}
+[e :U 32 ]
+"62
+{
+[v _j `uc ~T0 @X0 1 a ]
+[e = _j -> -> 0 `i `uc ]
+[e $ < -> _j `i -> 255 `i 33  ]
+[e $U 34  ]
+[e :U 33 ]
+{
+"63
+[; <" clrwdt ;# ">
+"64
+[e ( ___nop ..  ]
+"65
+}
+[e ++ _j -> -> 1 `i `uc ]
+[e $ < -> _j `i -> 255 `i 33  ]
+[e :U 34 ]
+}
+"66
+}
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 200 `i 29  ]
+[e :U 30 ]
+}
+"69
+[e :U 37 ]
+{
+"70
+[; <" clrwdt ;# ">
+"73
+[e $ ! ! != -> ( _picfix_read_signal ..  `i -> 0 `i 39  ]
+{
+"74
+[e $ ! < -> _error_count `i -> 255 `i 40  ]
+[e ++ _error_count -> -> 1 `i `uc ]
+[e :U 40 ]
+"75
+[e $ ! >= -> _error_count `i -> 200 `i 41  ]
+{
+"77
+[e = _GP0 -> -> 1 `i `b ]
+"78
+[e = _GP1 -> -> 1 `i `b ]
+"79
+[e :U 43 ]
+{
+"80
+[; <" clrwdt ;# ">
+"81
+}
+[e :U 42 ]
+[e $U 43  ]
+[e :U 44 ]
+"82
+}
+[e :U 41 ]
+"83
+}
+[e $U 45  ]
+[e :U 39 ]
+{
+"84
+[e = _error_count -> -> 0 `i `uc ]
+"85
+}
+[e :U 45 ]
+"88
+[e ( _picfix_monitor_indicate ..  ]
+"91
+{
+[v _i `uc ~T0 @X0 1 a ]
+[e = _i -> -> 0 `i `uc ]
+[e $ < -> _i `i -> 255 `i 46  ]
+[e $U 47  ]
+[e :U 46 ]
+{
+"92
+{
+[v _j `uc ~T0 @X0 1 a ]
+[e = _j -> -> 0 `i `uc ]
+[e $ < -> _j `i -> 4 `i 49  ]
+[e $U 50  ]
+[e :U 49 ]
+{
+"93
+[e ( ___nop ..  ]
+"94
+}
+[e ++ _j -> -> 1 `i `uc ]
+[e $ < -> _j `i -> 4 `i 49  ]
+[e :U 50 ]
+}
+"95
+}
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 255 `i 46  ]
+[e :U 47 ]
+}
+"96
+}
+[e :U 36 ]
+[e $U 37  ]
+[e :U 38 ]
+"97
+[e :UE 28 ]
+}

@@ -1,0 +1,174 @@
+[p GLOBOPT AUTOSTATIC IEEE_DBL IEEE_FLT PIC12 PICREGULAR PIC12COM ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 12F508 ]
+[d frameptr 0 ]
+"58 I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+[e E309 . `uc
+ERROR_CHECK_IDLE 0
+ERROR_CHECK_INITIAL 1
+ERROR_CHECK_CONFIRMING 2
+ERROR_CHECK_VERIFIED 3
+]
+"81
+[e E282 . `uc
+STATE_STARTUP 0
+STATE_MONITORING 1
+STATE_TRIGGERED 2
+]
+"14 I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_core.c
+[e E30 . `uc
+STATE_STARTUP 0
+STATE_MONITORING 1
+STATE_TRIGGERED 2
+]
+"5 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\lwmod.c
+[v ___lwmod __lwmod `(ui  1 e 2 0 ]
+"10 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"4 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\Umul8_16.c
+[v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
+"63 I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+[v _picfix_init picfix_init `(v  1 e 1 0 ]
+"90
+[v _picfix_startup_indicate picfix_startup_indicate `(v  1 e 1 0 ]
+"103
+[v _picfix_monitor_indicate picfix_monitor_indicate `(v  1 e 1 0 ]
+"130
+[v _picfix_error_indicate picfix_error_indicate `(v  1 e 1 0 ]
+"137
+[v _picfix_activate_reset picfix_activate_reset `(v  1 e 1 0 ]
+"146
+[v _picfix_read_signal picfix_read_signal `(uc  1 e 1 0 ]
+"173
+[v _picfix_watchdog_clear picfix_watchdog_clear `(v  1 e 1 0 ]
+"196
+[v _picfix_timer_update_simple picfix_timer_update_simple `(v  1 e 1 0 ]
+"211
+[v _main main `(i  1 e 2 0 ]
+"19 I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_core.c
+[v _picfix_core_update picfix_core_update `(v  1 e 1 0 ]
+"41
+[v _picfix_handle_startup picfix_handle_startup `(v  1 e 1 0 ]
+"58
+[v _picfix_handle_monitoring picfix_handle_monitoring `(v  1 e 1 0 ]
+"88
+[v _picfix_handle_triggered picfix_handle_triggered `(v  1 e 1 0 ]
+"106
+[v _picfix_timer_update picfix_timer_update `(v  1 e 1 0 ]
+"325 C:/Users/burch/.mchp_packs/Microchip/PIC10-12Fxxx_DFP/1.8.184/xc8\pic\include\proc/pic12f508.h
+[v _TRIS TRIS `VEWuc  1 e 1 @6 ]
+"383
+[v _GP0 GP0 `VEb  1 e 0 @48 ]
+"386
+[v _GP1 GP1 `VEb  1 e 0 @49 ]
+"392
+[v _GP3 GP3 `VEb  1 e 0 @51 ]
+"44 I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+[v _flash_counter flash_counter `VEuc  1 s 1 flash_counter ]
+"45
+[v _led_state led_state `VEuc  1 s 1 led_state ]
+"46
+[v _watchdog_counter watchdog_counter `VEuc  1 s 1 watchdog_counter ]
+"47
+[v _signal_stable_count signal_stable_count `VEuc  1 s 1 signal_stable_count ]
+"48
+[v _error_confirmed error_confirmed `VEuc  1 s 1 error_confirmed ]
+"58
+[v _error_state error_state `E309  1 s 1 error_state ]
+"12 I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_core.c
+[v _system_timer_ms system_timer_ms `VEus  1 e 2 0 ]
+"13
+[v _error_timer_ms error_timer_ms `VEus  1 e 2 0 ]
+"14
+[v _current_state current_state `VEE282  1 e 1 0 ]
+"211 I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+[v _main main `(i  1 e 2 0 ]
+{
+"228
+} 0
+"196
+[v _picfix_timer_update_simple picfix_timer_update_simple `(v  1 e 1 0 ]
+{
+"197
+[v picfix_timer_update_simple@delay_count delay_count `uc  1 s 1 delay_count ]
+"206
+} 0
+"106 I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_core.c
+[v _picfix_timer_update picfix_timer_update `(v  1 e 1 0 ]
+{
+"108
+} 0
+"63 I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+[v _picfix_init picfix_init `(v  1 e 1 0 ]
+{
+"85
+} 0
+"19 I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_core.c
+[v _picfix_core_update picfix_core_update `(v  1 e 1 0 ]
+{
+"33
+} 0
+"88
+[v _picfix_handle_triggered picfix_handle_triggered `(v  1 e 1 0 ]
+{
+"100
+} 0
+"173 I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+[v _picfix_watchdog_clear picfix_watchdog_clear `(v  1 e 1 0 ]
+{
+"184
+} 0
+"130
+[v _picfix_error_indicate picfix_error_indicate `(v  1 e 1 0 ]
+{
+"132
+} 0
+"137
+[v _picfix_activate_reset picfix_activate_reset `(v  1 e 1 0 ]
+{
+"139
+} 0
+"41 I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_core.c
+[v _picfix_handle_startup picfix_handle_startup `(v  1 e 1 0 ]
+{
+"50
+} 0
+"90 I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+[v _picfix_startup_indicate picfix_startup_indicate `(v  1 e 1 0 ]
+{
+"97
+} 0
+"5 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\lwmod.c
+[v ___lwmod __lwmod `(ui  1 e 2 0 ]
+{
+"10
+[v ___lwmod@counter counter `uc  1 a 1 4 ]
+"5
+[v ___lwmod@divisor divisor `ui  1 p 2 0 ]
+[v ___lwmod@dividend dividend `ui  1 p 2 2 ]
+"25
+} 0
+"58 I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_core.c
+[v _picfix_handle_monitoring picfix_handle_monitoring `(v  1 e 1 0 ]
+{
+"80
+} 0
+"146 I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+[v _picfix_read_signal picfix_read_signal `(uc  1 e 1 0 ]
+{
+"147
+[v picfix_read_signal@sample3 sample3 `uc  1 a 1 4 ]
+[v picfix_read_signal@sample2 sample2 `uc  1 a 1 3 ]
+[v picfix_read_signal@sample1 sample1 `uc  1 a 1 2 ]
+"162
+} 0
+"103
+[v _picfix_monitor_indicate picfix_monitor_indicate `(v  1 e 1 0 ]
+{
+"105
+[v picfix_monitor_indicate@led_brightness led_brightness `uc  1 s 1 led_brightness ]
+"106
+[v picfix_monitor_indicate@led_direction led_direction `c  1 s 1 led_direction ]
+"125
+} 0

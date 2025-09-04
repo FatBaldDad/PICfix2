@@ -1,0 +1,204 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"14 picfix_core.c
+[; ;picfix_core.c: 14: volatile picfix_state_t current_state = STATE_STARTUP;
+[c E30 0 1 2 .. ]
+[n E30 . STATE_STARTUP STATE_MONITORING STATE_TRIGGERED  ]
+"61 ./picfix_common.h
+[; ;./picfix_common.h: 61: void picfix_handle_startup(void);
+[v _picfix_handle_startup `(v ~T0 @X0 0 ef ]
+"62
+[; ;./picfix_common.h: 62: void picfix_handle_monitoring(void);
+[v _picfix_handle_monitoring `(v ~T0 @X0 0 ef ]
+"63
+[; ;./picfix_common.h: 63: void picfix_handle_triggered(void);
+[v _picfix_handle_triggered `(v ~T0 @X0 0 ef ]
+"51
+[; ;./picfix_common.h: 51: void picfix_startup_indicate(void);
+[v _picfix_startup_indicate `(v ~T0 @X0 0 ef ]
+"52
+[; ;./picfix_common.h: 52: void picfix_monitor_indicate(void);
+[v _picfix_monitor_indicate `(v ~T0 @X0 0 ef ]
+"55
+[; ;./picfix_common.h: 55: uint8_t picfix_read_signal(void);
+[v _picfix_read_signal `(uc ~T0 @X0 0 ef ]
+"53
+[; ;./picfix_common.h: 53: void picfix_error_indicate(void);
+[v _picfix_error_indicate `(v ~T0 @X0 0 ef ]
+"54
+[; ;./picfix_common.h: 54: void picfix_activate_reset(void);
+[v _picfix_activate_reset `(v ~T0 @X0 0 ef ]
+"57
+[; ;./picfix_common.h: 57: void picfix_watchdog_clear(void);
+[v _picfix_watchdog_clear `(v ~T0 @X0 0 ef ]
+"12 picfix_core.c
+[; ;picfix_core.c: 12: volatile uint16_t system_timer_ms = 0;
+[v _system_timer_ms `Vus ~T0 @X0 1 e ]
+[i _system_timer_ms
+-> -> 0 `i `us
+]
+"13
+[; ;picfix_core.c: 13: volatile uint16_t error_timer_ms = 0;
+[v _error_timer_ms `Vus ~T0 @X0 1 e ]
+[i _error_timer_ms
+-> -> 0 `i `us
+]
+"14
+[; ;picfix_core.c: 14: volatile picfix_state_t current_state = STATE_STARTUP;
+[v _current_state `VE30 ~T0 @X0 1 e ]
+[i _current_state
+. `E30 0
+]
+"19
+[; ;picfix_core.c: 19: void picfix_core_update(void) {
+[v _picfix_core_update `(v ~T0 @X0 1 ef ]
+{
+[e :U _picfix_core_update ]
+[f ]
+"20
+[; ;picfix_core.c: 20:     switch(current_state) {
+[e $U 3  ]
+{
+"21
+[; ;picfix_core.c: 21:         case STATE_STARTUP:
+[e :U 4 ]
+"22
+[; ;picfix_core.c: 22:             picfix_handle_startup();
+[e ( _picfix_handle_startup ..  ]
+"23
+[; ;picfix_core.c: 23:             break;
+[e $U 2  ]
+"25
+[; ;picfix_core.c: 25:         case STATE_MONITORING:
+[e :U 5 ]
+"26
+[; ;picfix_core.c: 26:             picfix_handle_monitoring();
+[e ( _picfix_handle_monitoring ..  ]
+"27
+[; ;picfix_core.c: 27:             break;
+[e $U 2  ]
+"29
+[; ;picfix_core.c: 29:         case STATE_TRIGGERED:
+[e :U 6 ]
+"30
+[; ;picfix_core.c: 30:             picfix_handle_triggered();
+[e ( _picfix_handle_triggered ..  ]
+"31
+[; ;picfix_core.c: 31:             break;
+[e $U 2  ]
+"32
+[; ;picfix_core.c: 32:     }
+}
+[e $U 2  ]
+[e :U 3 ]
+[e [\ -> _current_state `ui , $ -> . `E30 0 `ui 4
+ , $ -> . `E30 1 `ui 5
+ , $ -> . `E30 2 `ui 6
+ 2 ]
+[e :U 2 ]
+"33
+[; ;picfix_core.c: 33: }
+[e :UE 1 ]
+}
+"41
+[; ;picfix_core.c: 41: void picfix_handle_startup(void) {
+[v _picfix_handle_startup `(v ~T0 @X0 1 ef ]
+{
+[e :U _picfix_handle_startup ]
+[f ]
+"43
+[; ;picfix_core.c: 43:     picfix_startup_indicate();
+[e ( _picfix_startup_indicate ..  ]
+"46
+[; ;picfix_core.c: 46:     if(system_timer_ms >= 2000) {
+[e $ ! >= -> _system_timer_ms `ui -> -> 2000 `i `ui 8  ]
+{
+"47
+[; ;picfix_core.c: 47:         current_state = STATE_MONITORING;
+[e = _current_state . `E30 1 ]
+"48
+[; ;picfix_core.c: 48:         error_timer_ms = 0;
+[e = _error_timer_ms -> -> 0 `i `us ]
+"49
+[; ;picfix_core.c: 49:     }
+}
+[e :U 8 ]
+"50
+[; ;picfix_core.c: 50: }
+[e :UE 7 ]
+}
+"58
+[; ;picfix_core.c: 58: void picfix_handle_monitoring(void) {
+[v _picfix_handle_monitoring `(v ~T0 @X0 1 ef ]
+{
+[e :U _picfix_handle_monitoring ]
+[f ]
+"60
+[; ;picfix_core.c: 60:     picfix_monitor_indicate();
+[e ( _picfix_monitor_indicate ..  ]
+"67
+[; ;picfix_core.c: 67:         if(picfix_read_signal() == 0) {
+[e $ ! == -> ( _picfix_read_signal ..  `i -> 0 `i 10  ]
+{
+"69
+[; ;picfix_core.c: 69:             error_timer_ms++;
+[e ++ _error_timer_ms -> -> 1 `i `Vus ]
+"72
+[; ;picfix_core.c: 72:             if(error_timer_ms >= 2000) {
+[e $ ! >= -> _error_timer_ms `ui -> -> 2000 `i `ui 11  ]
+{
+"73
+[; ;picfix_core.c: 73:                 current_state = STATE_TRIGGERED;
+[e = _current_state . `E30 2 ]
+"74
+[; ;picfix_core.c: 74:             }
+}
+[e :U 11 ]
+"75
+[; ;picfix_core.c: 75:         } else {
+}
+[e $U 12  ]
+[e :U 10 ]
+{
+"77
+[; ;picfix_core.c: 77:             error_timer_ms = 0;
+[e = _error_timer_ms -> -> 0 `i `us ]
+"78
+[; ;picfix_core.c: 78:         }
+}
+[e :U 12 ]
+"80
+[; ;picfix_core.c: 80: }
+[e :UE 9 ]
+}
+"88
+[; ;picfix_core.c: 88: void picfix_handle_triggered(void) {
+[v _picfix_handle_triggered `(v ~T0 @X0 1 ef ]
+{
+[e :U _picfix_handle_triggered ]
+[f ]
+"90
+[; ;picfix_core.c: 90:     picfix_error_indicate();
+[e ( _picfix_error_indicate ..  ]
+"93
+[; ;picfix_core.c: 93:     picfix_activate_reset();
+[e ( _picfix_activate_reset ..  ]
+"96
+[; ;picfix_core.c: 96:     picfix_watchdog_clear();
+[e ( _picfix_watchdog_clear ..  ]
+"100
+[; ;picfix_core.c: 100: }
+[e :UE 13 ]
+}
+"106
+[; ;picfix_core.c: 106: void picfix_timer_update(void) {
+[v _picfix_timer_update `(v ~T0 @X0 1 ef ]
+{
+[e :U _picfix_timer_update ]
+[f ]
+"107
+[; ;picfix_core.c: 107:     system_timer_ms++;
+[e ++ _system_timer_ms -> -> 1 `i `Vus ]
+"108
+[; ;picfix_core.c: 108: }
+[e :UE 14 ]
+}

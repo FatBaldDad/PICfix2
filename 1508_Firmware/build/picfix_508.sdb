@@ -1,0 +1,95 @@
+[p GLOBOPT AUTOSTATIC IEEE_DBL IEEE_FLT PIC12 PICREGULAR PIC12COM ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 12F508 ]
+[d frameptr 0 ]
+"14 I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_core.c
+[e E30 . `uc
+STATE_STARTUP 0
+STATE_MONITORING 1
+STATE_TRIGGERED 2
+]
+"5 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\awmod.c
+[v ___awmod __awmod `(i  1 e 2 0 ]
+"10 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"4 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\Umul8_16.c
+[v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
+"20 I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+[v _picfix_init picfix_init `(v  1 e 1 0 ]
+"28
+[v _picfix_monitor_indicate picfix_monitor_indicate `(v  1 e 1 0 ]
+"39
+[v _picfix_read_signal picfix_read_signal `(uc  1 e 1 0 ]
+"50
+[v _main main `(v  1 e 1 0 ]
+"41 I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_core.c
+[v _picfix_handle_startup picfix_handle_startup `(v  1 e 1 0 ]
+"58
+[v _picfix_handle_monitoring picfix_handle_monitoring `(v  1 e 1 0 ]
+"88
+[v _picfix_handle_triggered picfix_handle_triggered `(v  1 e 1 0 ]
+"271 C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic12f508.h
+[v _GPIO GPIO `VEuc  1 e 1 @6 ]
+"321
+[v _OPTION OPTION `VEWuc  1 e 1 @0 ]
+"325
+[v _TRIS TRIS `VEWuc  1 e 1 @6 ]
+"383
+[v _GP0 GP0 `VEb  1 e 0 @48 ]
+"386
+[v _GP1 GP1 `VEb  1 e 0 @49 ]
+"392
+[v _GP3 GP3 `VEb  1 e 0 @51 ]
+"17 I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+[v _counter counter `uc  1 s 1 counter ]
+"12 I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_core.c
+[v _system_timer_ms system_timer_ms `VEus  1 e 2 0 ]
+"13
+[v _error_timer_ms error_timer_ms `VEus  1 e 2 0 ]
+"14
+[v _current_state current_state `VEE30  1 e 1 0 ]
+"50 I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+[v _main main `(v  1 e 1 0 ]
+{
+"92
+[v main@j_51 j `uc  1 a 1 9 ]
+"62
+[v main@j j `uc  1 a 1 7 ]
+"91
+[v main@i_50 i `uc  1 a 1 8 ]
+"55
+[v main@i i `uc  1 a 1 11 ]
+"51
+[v main@error_count error_count `uc  1 a 1 10 ]
+"97
+} 0
+"39
+[v _picfix_read_signal picfix_read_signal `(uc  1 e 1 0 ]
+{
+"40
+[v picfix_read_signal@sample2 sample2 `uc  1 a 1 2 ]
+[v picfix_read_signal@sample1 sample1 `uc  1 a 1 1 ]
+"47
+} 0
+"28
+[v _picfix_monitor_indicate picfix_monitor_indicate `(v  1 e 1 0 ]
+{
+"36
+} 0
+"20
+[v _picfix_init picfix_init `(v  1 e 1 0 ]
+{
+"25
+} 0
+"5 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\awmod.c
+[v ___awmod __awmod `(i  1 e 2 0 ]
+{
+"10
+[v ___awmod@sign sign `uc  1 a 1 5 ]
+[v ___awmod@counter counter `uc  1 a 1 4 ]
+"5
+[v ___awmod@divisor divisor `i  1 p 2 0 ]
+[v ___awmod@dividend dividend `i  1 p 2 2 ]
+"34
+} 0

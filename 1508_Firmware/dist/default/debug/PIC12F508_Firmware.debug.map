@@ -1,0 +1,364 @@
+Microchip MPLAB XC8 Compiler V3.00
+
+Linker command line:
+
+-W-3 \
+  --edf=C:/Users/burch/.mchp_packs/Microchip/PIC10-12Fxxx_DFP/1.8.184/xc8\pic\dat\20250326204855_en.msgs \
+  -cn -h+dist/default/debug\PIC12F508_Firmware.debug.sym \
+  --cmf=dist/default/debug\PIC12F508_Firmware.debug.cmf -z -Q12F508 \
+  -oC:\Users\burch\AppData\Local\Temp\xcAs2js.\driver_tmp_3.o \
+  --defsym=__MPLAB_BUILD=1 --fixupoverflow=error \
+  -Mdist/default/debug/PIC12F508_Firmware.debug.map \
+  --md=C:\Users\burch\AppData\Local\Temp\xcAs2js.\driver_tmp_0.dat -E1 \
+  -ver=XC8 Compiler -ACODE=00h-01FEh -ASTRCODE=00h-01FEh -ASTRING=00h-0FFh \
+  -AENTRY=00h-0FFh-01FEh -ABANK0=07h-01Dh -ARAM=07h-01Dh -AABS1=07h-01Fh \
+  -ACOMMON=01Ch-01Fh -ASFR0=00h-06h -ACONFIG=0FFFh-0FFFh -DCONFIG=2 \
+  -AIDLOC=0200h-0203h -DIDLOC=2 -DCODE=2 -DSTRCODE=2 -DSTRING=2 -DCONST=2 \
+  -DENTRY=2 -preset_vec=01ffh,reset_wrap=00h,init,end_init,cinit,clrtext \
+  -ppowerup=CODE -pfunctab=ENTRY -pstrings=-STRING -k \
+  C:\Users\burch\AppData\Local\Temp\xcAs2js.\driver_tmp_9.o \
+  dist/default/debug\PIC12F508_Firmware.debug.o 
+
+Object code version is 3.11
+
+Machine type is 12F508
+
+
+
+                Name                               Link     Load   Length Selector   Space Scale
+C:\Users\burch\AppData\Local\Temp\xcAs2js.\driver_tmp_9.o
+                end_init                              0        0        1        0       0
+                reset_vec                           1FF      1FF        1      3FE       0
+                config                              FFF      FFF        1        0       4
+dist/default/debug\PIC12F508_Firmware.debug.o
+                clrtext                               A        A        9        0       0
+                cinit                                 1        1        9        0       0
+                config                              FFF      FFF        1        0       4
+                text14                              167      167       25      2CE       0
+                text13                              18C      18C       33      318       0
+                text12                              146      146       21      28C       0
+                text11                              1BF      1BF       40      37E       0
+                text10                              115      115       16      22A       0
+                text9                                E5       E5        F      1CA       0
+                text8                                C2       C2        2      184       0
+                text7                                C4       C4        2      188       0
+                text6                                DA       DA        B      1B4       0
+                text5                                C6       C6        4      18C       0
+                text4                               12B      12B       1B      256       0
+                text3                                F4       F4       10      1E8       0
+                text2                                D0       D0        A      1A0       0
+                jmp_tab                              13       13        E        0       0
+                text1                               104      104       11      208       0
+                maintext                             CA       CA        6      194       0
+                cstackBANK0                          14       14        6        7       1
+                dataBANK0                            1A       1A        1        7       1
+                bssBANK0                              7        7        D        7       1
+                idataBANK0                           21       21        1        0       0
+
+TOTAL           Name                               Link     Load   Length     Space
+        CLASS   CODE           
+                reset_vec                           1FF      1FF        1         0
+                text14                              167      167       25         0
+                text13                              18C      18C       33         0
+                text12                              146      146       21         0
+                text11                              1BF      1BF       40         0
+                text10                              115      115       16         0
+                text9                                E5       E5        F         0
+                text8                                C2       C2        2         0
+                text7                                C4       C4        2         0
+                text6                                DA       DA        B         0
+                text5                                C6       C6        4         0
+                text4                               12B      12B       1B         0
+                text3                                F4       F4       10         0
+                text2                                D0       D0        A         0
+                text1                               104      104       11         0
+                maintext                             CA       CA        6         0
+
+        CLASS   STRCODE        
+
+        CLASS   STRING         
+
+        CLASS   ENTRY          
+                clrtext                               A        A        9         0
+                end_init                              0        0        1         0
+                cinit                                 1        1        9         0
+                jmp_tab                              13       13        E         0
+                idataBANK0                           21       21        1         0
+
+        CLASS   BANK0          
+                cstackBANK0                          14       14        6         1
+                dataBANK0                            1A       1A        1         1
+                bssBANK0                              7        7        D         1
+
+        CLASS   RAM            
+
+        CLASS   ABS1           
+                abs_s1                               1C       1C        4         1
+
+        CLASS   COMMON         
+
+        CLASS   SFR0           
+
+        CLASS   CONFIG         
+                config                              FFF      FFF        1         4
+
+        CLASS   IDLOC          
+
+        CLASS   CONST          
+
+        CLASS   HEAP           
+
+        CLASS   STACK          
+
+
+
+SEGMENTS        Name                           Load    Length   Top    Selector   Space  Class     Delta
+
+                reset_wrap                     000000  000022  000022         0       0  ENTRY       2
+                bssBANK0                       000007  000014  00001B         7       1  BANK0       1
+                text8                          0000C2  000002  0000C4       184       0  CODE        2
+                text7                          0000C4  000002  0000C6       188       0  CODE        2
+                text5                          0000C6  000004  0000CA       18C       0  CODE        2
+                maintext                       0000CA  000006  0000D0       194       0  CODE        2
+                text2                          0000D0  00000A  0000DA       1A0       0  CODE        2
+                text6                          0000DA  00000B  0000E5       1B4       0  CODE        2
+                text9                          0000E5  00000F  0000F4       1CA       0  CODE        2
+                text3                          0000F4  000010  000104       1E8       0  CODE        2
+                text1                          000104  000011  000115       208       0  CODE        2
+                text10                         000115  000016  00012B       22A       0  CODE        2
+                text4                          00012B  00001B  000146       256       0  CODE        2
+                text12                         000146  000021  000167       28C       0  CODE        2
+                text14                         000167  000025  00018C       2CE       0  CODE        2
+                text13                         00018C  000033  0001BF       318       0  CODE        2
+                text11                         0001BF  000040  0001FF       37E       0  CODE        2
+                reset_vec                      0001FF  000001  000200       3FE       0  CODE        2
+
+
+UNUSED ADDRESS RANGES
+
+        Name                Unused          Largest block    Delta
+        BANK0            001B-001B              1           1
+        CODE             0022-00C1             A0           2
+        ENTRY            0022-00C1             A0           2
+        IDLOC            0200-0203              4           2
+        RAM              001B-001B              1           1
+        SFR0             0000-0006              7           1
+        STRCODE          0022-00C1             A0           2
+        STRING           0022-00C1             A0           2
+
+                                  Symbol Table
+
+?___lwmod                              cstackBANK0  0014
+?_picfix_read_signal                   cstackBANK0  0014
+_GP0                                   (abs)        0030
+_GP1                                   (abs)        0031
+_GP3                                   (abs)        0033
+_TRIS                                  (abs)        0006
+__H__absolute__                        __absolute__ 0000
+__Habs1                                abs1         0000
+__Hbank0                               bank0        0000
+__HbssBANK0                            bssBANK0     0000
+__Hcinit                               cinit        000A
+__Hclrtext                             clrtext      0013
+__Hcode                                code         0000
+__Hcommon                              common       0000
+__Hconfig                              config       1000
+__HcstackBANK0                         cstackBANK0  0000
+__HcstackCOMMON                        cstackCOMMON 0000
+__HdataBANK0                           dataBANK0    0000
+__Hend_init                            end_init     0001
+__Hfunctab                             functab      0000
+__Hheap                                heap         0000
+__HidataBANK0                          idataBANK0   0000
+__Hinit                                init         0000
+__Hjmp_tab                             jmp_tab      0000
+__Hmaintext                            maintext     0000
+__Hpowerup                             powerup      0000
+__Hram                                 ram          0000
+__Hreset_vec                           reset_vec    0200
+__Hreset_wrap                          reset_wrap   0000
+__Hsfr0                                sfr0         0000
+__Hspace_0                             (abs)        0200
+__Hspace_1                             (abs)        001B
+__Hspace_2                             (abs)        0000
+__Hspace_4                             (abs)        1FFF
+__Hstack                               stack        0000
+__Hstrings                             strings      0000
+__Htext                                text         0000
+__L__absolute__                        __absolute__ 0000
+__Labs1                                abs1         0000
+__Lbank0                               bank0        0000
+__LbssBANK0                            bssBANK0     0000
+__Lcinit                               cinit        0001
+__Lclrtext                             clrtext      000A
+__Lcode                                code         0000
+__Lcommon                              common       0000
+__Lconfig                              config       0000
+__LcstackBANK0                         cstackBANK0  0000
+__LcstackCOMMON                        cstackCOMMON 0000
+__LdataBANK0                           dataBANK0    0000
+__Lend_init                            end_init     0000
+__Lfunctab                             functab      0000
+__Lheap                                heap         0000
+__LidataBANK0                          idataBANK0   0000
+__Linit                                init         0000
+__Ljmp_tab                             jmp_tab      0000
+__Lmaintext                            maintext     0000
+__Lpowerup                             powerup      0000
+__Lram                                 ram          0000
+__Lreset_vec                           reset_vec    01FF
+__Lreset_wrap                          reset_wrap   0000
+__Lsfr0                                sfr0         0000
+__Lspace_0                             (abs)        0000
+__Lspace_1                             (abs)        0000
+__Lspace_2                             (abs)        0000
+__Lspace_4                             (abs)        0000
+__Lstack                               stack        0000
+__Lstrings                             strings      0000
+__Ltext                                text         0000
+__S0                                   (abs)        01FF
+__S1                                   (abs)        001B
+___heap_hi                             (abs)        0000
+___heap_lo                             (abs)        0000
+___int_sp                              stack        0000
+___int_stack_hi                        stack        0000
+___int_stack_lo                        stack        0000
+___latbits                             (abs)        0000
+___lwmod                               text11       01BF
+___lwmod@counter                       cstackBANK0  0018
+___lwmod@dividend                      cstackBANK0  0016
+___lwmod@divisor                       cstackBANK0  0014
+___sp                                  stack        0000
+___stack_hi                            stack        0000
+___stack_lo                            stack        0000
+___stackhi                             (abs)        0000
+___stacklo                             (abs)        0000
+__end_of___lwmod                       text11       01FF
+__end_of__initialization               cinit        0008
+__end_of_main                          maintext     00D0
+__end_of_picfix_activate_reset         text8        00C4
+__end_of_picfix_core_update            text4        0146
+__end_of_picfix_error_indicate         text7        00C6
+__end_of_picfix_handle_monitoring      text12       0167
+__end_of_picfix_handle_startup         text9        00F4
+__end_of_picfix_handle_triggered       text5        00CA
+__end_of_picfix_init                   text3        0104
+__end_of_picfix_monitor_indicate       text14       018C
+__end_of_picfix_read_signal            text13       01BF
+__end_of_picfix_startup_indicate       text10       012B
+__end_of_picfix_timer_update           text2        00DA
+__end_of_picfix_timer_update_simple    text1        0115
+__end_of_picfix_watchdog_clear         text6        00E5
+__initialization                       cinit        0001
+__pbssBANK0                            bssBANK0     0007
+__pcstackBANK0                         cstackBANK0  0014
+__pcstackCOMMON                        cstackCOMMON 0000
+__pdataBANK0                           dataBANK0    001A
+__pidataBANK0                          idataBANK0   0021
+__pjmp_tab                             jmp_tab      0013
+__pmaintext                            maintext     00CA
+__ptext1                               text1        0104
+__ptext10                              text10       0115
+__ptext11                              text11       01BF
+__ptext12                              text12       0146
+__ptext13                              text13       018C
+__ptext14                              text14       0167
+__ptext2                               text2        00D0
+__ptext3                               text3        00F4
+__ptext4                               text4        012B
+__ptext5                               text5        00C6
+__ptext6                               text6        00DA
+__ptext7                               text7        00C4
+__ptext8                               text8        00C2
+__ptext9                               text9        00E5
+_current_state                         bssBANK0     0013
+_error_confirmed                       bssBANK0     000E
+_error_state                           bssBANK0     000D
+_error_timer_ms                        bssBANK0     0007
+_flash_counter                         bssBANK0     0012
+_led_state                             bssBANK0     0011
+_main                                  maintext     00CA
+_picfix_activate_reset                 text8        00C2
+_picfix_core_update                    text4        012B
+_picfix_error_indicate                 text7        00C4
+_picfix_handle_monitoring              text12       0146
+_picfix_handle_startup                 text9        00E5
+_picfix_handle_triggered               text5        00C6
+_picfix_init                           text3        00F4
+_picfix_monitor_indicate               text14       0167
+_picfix_read_signal                    text13       018C
+_picfix_startup_indicate               text10       0115
+_picfix_timer_update                   text2        00D0
+_picfix_timer_update_simple            text1        0104
+_picfix_watchdog_clear                 text6        00DA
+_signal_stable_count                   bssBANK0     000F
+_system_timer_ms                       bssBANK0     0009
+_watchdog_counter                      bssBANK0     0010
+btemp                                  (abs)        001C
+clear_ram0                             clrtext      000A
+end_of_initialization                  cinit        0008
+entry____lwmod                         jmp_tab      001D
+entry__picfix_activate_reset           jmp_tab      001A
+entry__picfix_core_update              jmp_tab      0016
+entry__picfix_error_indicate           jmp_tab      0019
+entry__picfix_handle_monitoring        jmp_tab      001E
+entry__picfix_handle_startup           jmp_tab      001B
+entry__picfix_handle_triggered         jmp_tab      0017
+entry__picfix_init                     jmp_tab      0015
+entry__picfix_monitor_indicate         jmp_tab      0020
+entry__picfix_read_signal              jmp_tab      001F
+entry__picfix_startup_indicate         jmp_tab      001C
+entry__picfix_timer_update             jmp_tab      0014
+entry__picfix_timer_update_simple      jmp_tab      0013
+entry__picfix_watchdog_clear           jmp_tab      0018
+ltemp0                                 (abs)        001C
+picfix_monitor_indicate@led_brightness bssBANK0     000C
+picfix_monitor_indicate@led_direction  dataBANK0    001A
+picfix_read_signal@sample1             cstackBANK0  0016
+picfix_read_signal@sample2             cstackBANK0  0017
+picfix_read_signal@sample3             cstackBANK0  0018
+picfix_timer_update_simple@delay_count bssBANK0     000B
+reset_vec                              reset_vec    01FF
+reset_wrap                             reset_wrap   0000
+start                                  init         0000
+start_initialization                   cinit        0001
+ttemp0                                 (abs)        001C
+wtemp0                                 (abs)        001C
+wtemp1                                 (abs)        001E
+
+
+MODULE INFORMATION
+
+Module		Function		Class		Link	Load	Size
+picfix_core.c
+		_picfix_handle_triggered		CODE           	00C6	0000	4
+		_picfix_handle_startup		CODE           	00E5	0000	15
+		_picfix_timer_update		CODE           	00D0	0000	10
+		_picfix_core_update		CODE           	012B	0000	27
+		_picfix_handle_monitoring		CODE           	0146	0000	33
+
+picfix_core.c estimated size: 89
+
+C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\lwmod.c
+		___lwmod       		CODE           	01BF	0000	64
+
+C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\lwmod.c estimated size: 64
+
+shared
+		__initialization		ENTRY          	0001	0000	7
+
+shared estimated size: 7
+
+picfix_508.c
+		_picfix_watchdog_clear		CODE           	00DA	0000	11
+		_picfix_error_indicate		CODE           	00C4	0000	2
+		_picfix_init   		CODE           	00F4	0000	16
+		_main          		CODE           	00CA	0000	6
+		_picfix_activate_reset		CODE           	00C2	0000	2
+		_picfix_timer_update_simple		CODE           	0104	0000	17
+		_picfix_read_signal		CODE           	018C	0000	51
+		_picfix_monitor_indicate		CODE           	0167	0000	37
+		_picfix_startup_indicate		CODE           	0115	0000	22
+
+picfix_508.c estimated size: 164
+

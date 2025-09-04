@@ -1,0 +1,435 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"58 picfix_508.c
+[; ;picfix_508.c: 58: static error_check_state_t error_state = ERROR_CHECK_IDLE;
+[c E309 0 1 2 3 .. ]
+[n E309 . ERROR_CHECK_IDLE ERROR_CHECK_INITIAL ERROR_CHECK_CONFIRMING ERROR_CHECK_VERIFIED  ]
+"325 C:/Users/burch/.mchp_packs/Microchip/PIC10-12Fxxx_DFP/1.8.184/xc8\pic\include\proc/pic12f508.h
+[; ;C:/Users/burch/.mchp_packs/Microchip/PIC10-12Fxxx_DFP/1.8.184/xc8\pic\include\proc/pic12f508.h: 325: extern volatile __control unsigned char TRIS __attribute__((address(0x006)));
+[v _TRIS `VWuc ~T0 @X0 0 e@6 ]
+"383
+[; ;C:/Users/burch/.mchp_packs/Microchip/PIC10-12Fxxx_DFP/1.8.184/xc8\pic\include\proc/pic12f508.h: 383: extern volatile __bit GP0 __attribute__((address(0x30)));
+[v _GP0 `Vb ~T0 @X0 0 e@48 ]
+"386
+[; ;C:/Users/burch/.mchp_packs/Microchip/PIC10-12Fxxx_DFP/1.8.184/xc8\pic\include\proc/pic12f508.h: 386: extern volatile __bit GP1 __attribute__((address(0x31)));
+[v _GP1 `Vb ~T0 @X0 0 e@49 ]
+"72 ./picfix_common.h
+[; ;./picfix_common.h: 72: extern volatile uint16_t system_timer_ms;
+[v _system_timer_ms `Vus ~T0 @X0 0 e ]
+"73
+[; ;./picfix_common.h: 73: extern volatile uint16_t error_timer_ms;
+[v _error_timer_ms `Vus ~T0 @X0 0 e ]
+"81 picfix_508.c
+[; ;picfix_508.c: 81:     current_state = STATE_STARTUP;
+[c E282 0 1 2 .. ]
+[n E282 . STATE_STARTUP STATE_MONITORING STATE_TRIGGERED  ]
+"74 ./picfix_common.h
+[; ;./picfix_common.h: 74: extern volatile picfix_state_t current_state;
+[v _current_state `VE282 ~T0 @X0 0 e ]
+"392 C:/Users/burch/.mchp_packs/Microchip/PIC10-12Fxxx_DFP/1.8.184/xc8\pic\include\proc/pic12f508.h
+[; ;C:/Users/burch/.mchp_packs/Microchip/PIC10-12Fxxx_DFP/1.8.184/xc8\pic\include\proc/pic12f508.h: 392: extern volatile __bit GP3 __attribute__((address(0x33)));
+[v _GP3 `Vb ~T0 @X0 0 e@51 ]
+[v F164 `(v ~T0 @X0 1 tf1`ul ]
+"20 C:\Program Files\Microchip\xc8\v3.00\pic\include/builtins.h
+[v __delay `JF164 ~T0 @X0 0 e ]
+[p i __delay ]
+"64 ./picfix_common.h
+[; ;./picfix_common.h: 64: void picfix_timer_update(void);
+[v _picfix_timer_update `(v ~T0 @X0 0 ef ]
+[p mainexit ]
+"60
+[; ;./picfix_common.h: 60: void picfix_core_update(void);
+[v _picfix_core_update `(v ~T0 @X0 0 ef ]
+"52 C:/Users/burch/.mchp_packs/Microchip/PIC10-12Fxxx_DFP/1.8.184/xc8\pic\include\proc/pic12f508.h
+[; ;C:/Users/burch/.mchp_packs/Microchip/PIC10-12Fxxx_DFP/1.8.184/xc8\pic\include\proc/pic12f508.h: 52: __asm("INDF equ 00h");
+[; <" INDF equ 00h ;# ">
+"72
+[; ;C:/Users/burch/.mchp_packs/Microchip/PIC10-12Fxxx_DFP/1.8.184/xc8\pic\include\proc/pic12f508.h: 72: __asm("TMR0 equ 01h");
+[; <" TMR0 equ 01h ;# ">
+"92
+[; ;C:/Users/burch/.mchp_packs/Microchip/PIC10-12Fxxx_DFP/1.8.184/xc8\pic\include\proc/pic12f508.h: 92: __asm("PCL equ 02h");
+[; <" PCL equ 02h ;# ">
+"112
+[; ;C:/Users/burch/.mchp_packs/Microchip/PIC10-12Fxxx_DFP/1.8.184/xc8\pic\include\proc/pic12f508.h: 112: __asm("STATUS equ 03h");
+[; <" STATUS equ 03h ;# ">
+"187
+[; ;C:/Users/burch/.mchp_packs/Microchip/PIC10-12Fxxx_DFP/1.8.184/xc8\pic\include\proc/pic12f508.h: 187: __asm("FSR equ 04h");
+[; <" FSR equ 04h ;# ">
+"207
+[; ;C:/Users/burch/.mchp_packs/Microchip/PIC10-12Fxxx_DFP/1.8.184/xc8\pic\include\proc/pic12f508.h: 207: __asm("OSCCAL equ 05h");
+[; <" OSCCAL equ 05h ;# ">
+"273
+[; ;C:/Users/burch/.mchp_packs/Microchip/PIC10-12Fxxx_DFP/1.8.184/xc8\pic\include\proc/pic12f508.h: 273: __asm("GPIO equ 06h");
+[; <" GPIO equ 06h ;# ">
+"24 picfix_508.c
+[p x OSC  =  IntRC       ]
+"25
+[p x WDT  =  ON          ]
+"26
+[p x CP  =  OFF          ]
+"27
+[p x MCLRE  =  OFF       ]
+"44
+[; ;picfix_508.c: 44: static volatile uint8_t flash_counter = 0;
+[v _flash_counter `Vuc ~T0 @X0 1 s ]
+[i _flash_counter
+-> -> 0 `i `uc
+]
+"45
+[; ;picfix_508.c: 45: static volatile uint8_t led_state = 0;
+[v _led_state `Vuc ~T0 @X0 1 s ]
+[i _led_state
+-> -> 0 `i `uc
+]
+"46
+[; ;picfix_508.c: 46: static volatile uint8_t watchdog_counter = 0;
+[v _watchdog_counter `Vuc ~T0 @X0 1 s ]
+[i _watchdog_counter
+-> -> 0 `i `uc
+]
+"47
+[; ;picfix_508.c: 47: static volatile uint8_t signal_stable_count = 0;
+[v _signal_stable_count `Vuc ~T0 @X0 1 s ]
+[i _signal_stable_count
+-> -> 0 `i `uc
+]
+"48
+[; ;picfix_508.c: 48: static volatile uint8_t error_confirmed = 0;
+[v _error_confirmed `Vuc ~T0 @X0 1 s ]
+[i _error_confirmed
+-> -> 0 `i `uc
+]
+"58
+[; ;picfix_508.c: 58: static error_check_state_t error_state = ERROR_CHECK_IDLE;
+[v _error_state `E309 ~T0 @X0 1 s ]
+[i _error_state
+. `E309 0
+]
+"63
+[; ;picfix_508.c: 63: void picfix_init(void) {
+[v _picfix_init `(v ~T0 @X0 1 ef ]
+{
+[e :U _picfix_init ]
+[f ]
+"65
+[; ;picfix_508.c: 65:     __asm("clrwdt");
+[; <" clrwdt ;# ">
+"68
+[; ;picfix_508.c: 68:     TRIS = 0b001000;
+[e = _TRIS -> -> 8 `i `uc ]
+"71
+[; ;picfix_508.c: 71:     GP0 = 0;
+[e = _GP0 -> -> 0 `i `b ]
+"72
+[; ;picfix_508.c: 72:     GP1 = 0;
+[e = _GP1 -> -> 0 `i `b ]
+"75
+[; ;picfix_508.c: 75:     system_timer_ms = 0;
+[e = _system_timer_ms -> -> 0 `i `us ]
+"76
+[; ;picfix_508.c: 76:     error_timer_ms = 0;
+[e = _error_timer_ms -> -> 0 `i `us ]
+"77
+[; ;picfix_508.c: 77:     watchdog_counter = 0;
+[e = _watchdog_counter -> -> 0 `i `uc ]
+"78
+[; ;picfix_508.c: 78:     signal_stable_count = 0;
+[e = _signal_stable_count -> -> 0 `i `uc ]
+"79
+[; ;picfix_508.c: 79:     error_confirmed = 0;
+[e = _error_confirmed -> -> 0 `i `uc ]
+"80
+[; ;picfix_508.c: 80:     error_state = ERROR_CHECK_IDLE;
+[e = _error_state . `E309 0 ]
+"81
+[; ;picfix_508.c: 81:     current_state = STATE_STARTUP;
+[e = _current_state . `E282 0 ]
+"84
+[; ;picfix_508.c: 84:     __asm("clrwdt");
+[; <" clrwdt ;# ">
+"85
+[; ;picfix_508.c: 85: }
+[e :UE 22 ]
+}
+"90
+[; ;picfix_508.c: 90: void picfix_startup_indicate(void) {
+[v _picfix_startup_indicate `(v ~T0 @X0 1 ef ]
+{
+[e :U _picfix_startup_indicate ]
+[f ]
+"92
+[; ;picfix_508.c: 92:     if((system_timer_ms % 250) < (250 / 2)) {
+[e $ ! < % -> _system_timer_ms `ui -> -> 250 `i `ui -> / -> 250 `i -> 2 `i `ui 24  ]
+{
+"93
+[; ;picfix_508.c: 93:         GP0 = 1;
+[e = _GP0 -> -> 1 `i `b ]
+"94
+[; ;picfix_508.c: 94:     } else {
+}
+[e $U 25  ]
+[e :U 24 ]
+{
+"95
+[; ;picfix_508.c: 95:         GP0 = 0;
+[e = _GP0 -> -> 0 `i `b ]
+"96
+[; ;picfix_508.c: 96:     }
+}
+[e :U 25 ]
+"97
+[; ;picfix_508.c: 97: }
+[e :UE 23 ]
+}
+"103
+[; ;picfix_508.c: 103: void picfix_monitor_indicate(void) {
+[v _picfix_monitor_indicate `(v ~T0 @X0 1 ef ]
+{
+[e :U _picfix_monitor_indicate ]
+[f ]
+"105
+[; ;picfix_508.c: 105:     static uint8_t led_brightness = 0;
+[v F319 `uc ~T0 @X0 1 s led_brightness ]
+[i F319
+-> -> 0 `i `uc
+]
+"106
+[; ;picfix_508.c: 106:     static int8_t led_direction = 1;
+[v F320 `c ~T0 @X0 1 s led_direction ]
+[i F320
+-> -> 1 `i `c
+]
+"109
+[; ;picfix_508.c: 109:     if((watchdog_counter % 8) == 0) {
+[e $ ! == % -> _watchdog_counter `i -> 8 `i -> 0 `i 27  ]
+{
+"110
+[; ;picfix_508.c: 110:         led_brightness += led_direction;
+[e =+ F319 -> F320 `uc ]
+"111
+[; ;picfix_508.c: 111:         if(led_brightness >= 15) {
+[e $ ! >= -> F319 `i -> 15 `i 28  ]
+{
+"112
+[; ;picfix_508.c: 112:             led_direction = -1;
+[e = F320 -> -U -> 1 `i `c ]
+"113
+[; ;picfix_508.c: 113:         } else if(led_brightness == 0) {
+}
+[e $U 29  ]
+[e :U 28 ]
+[e $ ! == -> F319 `i -> 0 `i 30  ]
+{
+"114
+[; ;picfix_508.c: 114:             led_direction = 1;
+[e = F320 -> -> 1 `i `c ]
+"115
+[; ;picfix_508.c: 115:         }
+}
+[e :U 30 ]
+[e :U 29 ]
+"116
+[; ;picfix_508.c: 116:     }
+}
+[e :U 27 ]
+"120
+[; ;picfix_508.c: 120:     if((watchdog_counter % 16) < led_brightness) {
+[e $ ! < % -> _watchdog_counter `i -> 16 `i -> F319 `i 31  ]
+{
+"121
+[; ;picfix_508.c: 121:         GP0 = 1;
+[e = _GP0 -> -> 1 `i `b ]
+"122
+[; ;picfix_508.c: 122:     } else {
+}
+[e $U 32  ]
+[e :U 31 ]
+{
+"123
+[; ;picfix_508.c: 123:         GP0 = 0;
+[e = _GP0 -> -> 0 `i `b ]
+"124
+[; ;picfix_508.c: 124:     }
+}
+[e :U 32 ]
+"125
+[; ;picfix_508.c: 125: }
+[e :UE 26 ]
+}
+"130
+[; ;picfix_508.c: 130: void picfix_error_indicate(void) {
+[v _picfix_error_indicate `(v ~T0 @X0 1 ef ]
+{
+[e :U _picfix_error_indicate ]
+[f ]
+"131
+[; ;picfix_508.c: 131:     GP0 = 1;
+[e = _GP0 -> -> 1 `i `b ]
+"132
+[; ;picfix_508.c: 132: }
+[e :UE 33 ]
+}
+"137
+[; ;picfix_508.c: 137: void picfix_activate_reset(void) {
+[v _picfix_activate_reset `(v ~T0 @X0 1 ef ]
+{
+[e :U _picfix_activate_reset ]
+[f ]
+"138
+[; ;picfix_508.c: 138:     GP1 = 1;
+[e = _GP1 -> -> 1 `i `b ]
+"139
+[; ;picfix_508.c: 139: }
+[e :UE 34 ]
+}
+"146
+[; ;picfix_508.c: 146: uint8_t picfix_read_signal(void) {
+[v _picfix_read_signal `(uc ~T0 @X0 1 ef ]
+{
+[e :U _picfix_read_signal ]
+[f ]
+"147
+[; ;picfix_508.c: 147:     uint8_t sample1, sample2, sample3;
+[v _sample1 `uc ~T0 @X0 1 a ]
+[v _sample2 `uc ~T0 @X0 1 a ]
+[v _sample3 `uc ~T0 @X0 1 a ]
+"150
+[; ;picfix_508.c: 150:     sample1 = GP3;
+[e = _sample1 -> _GP3 `uc ]
+"151
+[; ;picfix_508.c: 151:     _delay((unsigned long)((10)*(4000000/4000000.0)));
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 4000000 `l `d .4000000.0 `ul ]
+"152
+[; ;picfix_508.c: 152:     sample2 = GP3;
+[e = _sample2 -> _GP3 `uc ]
+"153
+[; ;picfix_508.c: 153:     _delay((unsigned long)((10)*(4000000/4000000.0)));
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 4000000 `l `d .4000000.0 `ul ]
+"154
+[; ;picfix_508.c: 154:     sample3 = GP3;
+[e = _sample3 -> _GP3 `uc ]
+"157
+[; ;picfix_508.c: 157:     if((sample1 + sample2 + sample3) >= 2) {
+[e $ ! >= + + -> _sample1 `i -> _sample2 `i -> _sample3 `i -> 2 `i 36  ]
+{
+"158
+[; ;picfix_508.c: 158:         return 1;
+[e ) -> -> 1 `i `uc ]
+[e $UE 35  ]
+"159
+[; ;picfix_508.c: 159:     } else {
+}
+[e $U 37  ]
+[e :U 36 ]
+{
+"160
+[; ;picfix_508.c: 160:         return 0;
+[e ) -> -> 0 `i `uc ]
+[e $UE 35  ]
+"161
+[; ;picfix_508.c: 161:     }
+}
+[e :U 37 ]
+"162
+[; ;picfix_508.c: 162: }
+[e :UE 35 ]
+}
+"173
+[; ;picfix_508.c: 173: void picfix_watchdog_clear(void) {
+[v _picfix_watchdog_clear `(v ~T0 @X0 1 ef ]
+{
+[e :U _picfix_watchdog_clear ]
+[f ]
+"175
+[; ;picfix_508.c: 175:     __asm("clrwdt");
+[; <" clrwdt ;# ">
+"178
+[; ;picfix_508.c: 178:     watchdog_counter++;
+[e ++ _watchdog_counter -> -> 1 `i `Vuc ]
+"181
+[; ;picfix_508.c: 181:     if(watchdog_counter > 200) {
+[e $ ! > -> _watchdog_counter `i -> 200 `i 39  ]
+{
+"182
+[; ;picfix_508.c: 182:         watchdog_counter = 0;
+[e = _watchdog_counter -> -> 0 `i `uc ]
+"183
+[; ;picfix_508.c: 183:     }
+}
+[e :U 39 ]
+"184
+[; ;picfix_508.c: 184: }
+[e :UE 38 ]
+}
+"196
+[; ;picfix_508.c: 196: void picfix_timer_update_simple(void) {
+[v _picfix_timer_update_simple `(v ~T0 @X0 1 ef ]
+{
+[e :U _picfix_timer_update_simple ]
+[f ]
+"197
+[; ;picfix_508.c: 197:     static uint8_t delay_count = 0;
+[v F329 `uc ~T0 @X0 1 s delay_count ]
+[i F329
+-> -> 0 `i `uc
+]
+"199
+[; ;picfix_508.c: 199:     _delay((unsigned long)((1)*(4000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
+"200
+[; ;picfix_508.c: 200:     delay_count++;
+[e ++ F329 -> -> 1 `i `uc ]
+"202
+[; ;picfix_508.c: 202:     if(delay_count >= 1) {
+[e $ ! >= -> F329 `i -> 1 `i 41  ]
+{
+"203
+[; ;picfix_508.c: 203:         picfix_timer_update();
+[e ( _picfix_timer_update ..  ]
+"204
+[; ;picfix_508.c: 204:         delay_count = 0;
+[e = F329 -> -> 0 `i `uc ]
+"205
+[; ;picfix_508.c: 205:     }
+}
+[e :U 41 ]
+"206
+[; ;picfix_508.c: 206: }
+[e :UE 40 ]
+}
+[v $root$_main `(v ~T0 @X0 0 e ]
+"211
+[; ;picfix_508.c: 211: int main(void) {
+[v _main `(i ~T0 @X0 1 ef ]
+{
+[e :U _main ]
+[f ]
+"213
+[; ;picfix_508.c: 213:     picfix_init();
+[e ( _picfix_init ..  ]
+"216
+[; ;picfix_508.c: 216:     while(1) {
+[e :U 44 ]
+{
+"218
+[; ;picfix_508.c: 218:         picfix_timer_update_simple();
+[e ( _picfix_timer_update_simple ..  ]
+"221
+[; ;picfix_508.c: 221:         picfix_core_update();
+[e ( _picfix_core_update ..  ]
+"224
+[; ;picfix_508.c: 224:         picfix_watchdog_clear();
+[e ( _picfix_watchdog_clear ..  ]
+"225
+[; ;picfix_508.c: 225:     }
+}
+[e :U 43 ]
+[e $U 44  ]
+[e :U 45 ]
+"227
+[; ;picfix_508.c: 227:     return 0;
+[e ) -> 0 `i ]
+[e $UE 42  ]
+"228
+[; ;picfix_508.c: 228: }
+[e :UE 42 ]
+}

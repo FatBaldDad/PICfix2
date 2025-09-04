@@ -1,0 +1,339 @@
+%CMF
+# %PSECTS Section
+# For each object file, details of its psects are enumerated here.
+# The begining of the section is indicated by %PSECTS.  The first
+# line indicates the name of the first object file, e.g.
+#    $foo.obj
+# Each line that follows describes a psect in that object file, until
+# the next object file.  The lines that describe a psect have the
+# format:
+#    <psect name> <class name> <space> <link address> <load addresses> <length> <delta> <reloc>
+# All addresses and the length are given in unqualified hexadecimal
+# in delta units.  Any other numeric values are decimal.
+%PSECTS
+$build\picfix_508.o
+cinit ENTRY 0 3 3 9 2 1
+text1 CODE 0 12B 12B 1C 2 1
+text2 CODE 0 119 119 12 2 1
+text3 CODE 0 112 112 7 2 1
+text4 CODE 0 1A0 1A0 5F 2 1
+maintext CODE 0 147 147 59 2 1
+cstackBANK0 BANK0 1 7 7 C 1 1
+bssBANK0 BANK0 1 13 13 6 1 1
+jmp_tab ENTRY 0 C C 4 2 1
+config CONFIG 4 FFF FFF 1 2 1
+$build\startup.o
+reset_wrap ENTRY 0 0 0 2 2 1
+reset_vec CODE 0 1FF 1FF 1 2 1
+end_init ENTRY 0 2 2 1 2 1
+config CONFIG 4 FFF FFF 1 2 1
+# %UNUSED Section
+# This section enumerates the unused ranges of each CLASS. Each entry
+# is described on a single line as follows:
+#    <class name> <range> <delta>
+# Addresses given in the range are in hexadecimal and units of delta.
+%UNUSED
+RAM 19-1B 1
+BANK0 19-1B 1
+ENTRY 10-FF 2
+IDLOC 200-203 2
+CODE 10-111 2
+SFR0 0-6 1
+STRCODE 10-111 2
+STRING 10-FF 2
+# %LINETAB Section
+# This section enumerates the file/line to address mappings.
+# The beginning of the section is indicated by %LINETAB.
+# The first line indicates the name of the first object file, e.g.
+#   $foo.obj
+# Each line that follows describes a single mapping until the next
+# object file.  Mappings have the following format:
+#    <address> <psect name> <class name> ><line number>:<file name>
+# The address is absolute and given given in unqualified hex 
+# in delta units of the psect. All mappings within an object file
+# are in ascending order of addresses.
+# All other numeric values are in decimal.
+%LINETAB
+$build\picfix_508.o
+3 cinit ENTRY >138:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\build\picfix_508.s
+3 cinit ENTRY >141:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\build\picfix_508.s
+3 cinit ENTRY >161:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\build\picfix_508.s
+4 cinit ENTRY >162:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\build\picfix_508.s
+5 cinit ENTRY >163:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\build\picfix_508.s
+6 cinit ENTRY >164:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\build\picfix_508.s
+7 cinit ENTRY >165:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\build\picfix_508.s
+8 cinit ENTRY >166:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\build\picfix_508.s
+9 cinit ENTRY >167:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\build\picfix_508.s
+A cinit ENTRY >173:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\build\picfix_508.s
+A cinit ENTRY >175:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\build\picfix_508.s
+B cinit ENTRY >176:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\build\picfix_508.s
+1A0 text4 CODE >5:C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\awmod.c
+1A0 text4 CODE >12:C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\awmod.c
+1A1 text4 CODE >13:C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\awmod.c
+1A5 text4 CODE >14:C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\awmod.c
+1A8 text4 CODE >14:C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\awmod.c
+1AA text4 CODE >15:C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\awmod.c
+1AC text4 CODE >17:C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\awmod.c
+1B0 text4 CODE >18:C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\awmod.c
+1B3 text4 CODE >18:C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\awmod.c
+1B5 text4 CODE >19:C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\awmod.c
+1BB text4 CODE >20:C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\awmod.c
+1BD text4 CODE >21:C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\awmod.c
+1BE text4 CODE >22:C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\awmod.c
+1C0 text4 CODE >22:C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\awmod.c
+1C5 text4 CODE >23:C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\awmod.c
+1C7 text4 CODE >21:C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\awmod.c
+1CB text4 CODE >26:C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\awmod.c
+1D1 text4 CODE >26:C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\awmod.c
+1D5 text4 CODE >26:C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\awmod.c
+1D9 text4 CODE >27:C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\awmod.c
+1E0 text4 CODE >27:C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\awmod.c
+1E3 text4 CODE >28:C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\awmod.c
+1E5 text4 CODE >28:C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\awmod.c
+1EA text4 CODE >29:C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\awmod.c
+1F0 text4 CODE >31:C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\awmod.c
+1F5 text4 CODE >32:C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\awmod.c
+1F8 text4 CODE >32:C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\awmod.c
+1FA text4 CODE >33:C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\awmod.c
+1FE text4 CODE >34:C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\awmod.c
+112 text3 CODE >20:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+112 text3 CODE >21:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+114 text3 CODE >22:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+115 text3 CODE >23:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+117 text3 CODE >24:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+118 text3 CODE >25:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+119 text2 CODE >28:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+119 text2 CODE >29:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+11B text2 CODE >29:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+11F text2 CODE >30:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+120 text2 CODE >31:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+121 text2 CODE >32:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+122 text2 CODE >35:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+12A text2 CODE >36:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+C jmp_tab ENTRY >39:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+D jmp_tab ENTRY >28:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+E jmp_tab ENTRY >20:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+F jmp_tab ENTRY >5:C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\awmod.c
+12B text1 CODE >39:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+12B text1 CODE >42:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+12F text1 CODE >43:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+133 text1 CODE >44:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+137 text1 CODE >46:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+146 text1 CODE >47:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+147 maintext CODE >50:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+147 maintext CODE >51:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+148 maintext CODE >52:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+149 maintext CODE >55:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+14A maintext CODE >57:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+15C maintext CODE >58:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+15E maintext CODE >62:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+15F maintext CODE >63:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+160 maintext CODE >64:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+161 maintext CODE >65:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+168 maintext CODE >66:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+16C maintext CODE >66:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+170 maintext CODE >69:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+170 maintext CODE >70:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+171 maintext CODE >73:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+179 maintext CODE >74:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+180 maintext CODE >75:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+182 maintext CODE >75:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+186 maintext CODE >77:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+187 maintext CODE >78:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+188 maintext CODE >79:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+188 maintext CODE >80:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+18A maintext CODE >84:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+18B maintext CODE >88:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+18C maintext CODE >91:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+18D maintext CODE >92:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+18E maintext CODE >93:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+18F maintext CODE >94:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+193 maintext CODE >94:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+197 maintext CODE >95:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\picfix_508.c
+$build\startup.o
+2 end_init ENTRY >87:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\build\startup.s
+0 reset_wrap ENTRY >70:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\build\startup.s
+1 reset_wrap ENTRY >71:I:\81-PS2 Fun\23-Git\Projects\PicfixPCB_v8-v12\PIC12F508_Firmware\build\startup.s
+# %SYMTAB Section
+# An enumeration of all symbols in the program.
+# The beginning of the section is indicated by %SYMTAB.
+# Each line describes a single symbol as follows:
+#    <label> <value> [-]<load-adj> <class> <space> <psect> <file-name>
+# The value and load-adj are both in unqualified hexadecimal.
+# All other numeric values are in decimal.  The load-adj is the
+# quantity one needs to add to the symbol value in order to obtain the load
+# address of the symbol.  This value may be signed. If the symbol
+# was defined in a psect then <psect> will be "-". File-name
+# is the name of the object file in which the symbol was defined.
+%SYMTAB
+___latbits 0 0 ABS 0 - build\picfix_508.o
+__Hspace_0 200 0 ABS 0 - -
+__Hspace_1 19 0 ABS 0 - -
+__Hspace_2 0 0 ABS 0 - -
+__Hspace_4 1FFF 0 ABS 0 - -
+__L__absolute__ 0 0 ABS 0 __absolute__ -
+ltemp0 1C 0 ABS 0 - build\picfix_508.o
+_picfix_monitor_indicate 232 0 CODE 0 text2 build\picfix_508.o
+main@i 12 0 BANK0 1 cstackBANK0 build\picfix_508.o
+main@j E 0 BANK0 1 cstackBANK0 build\picfix_508.o
+__Hstrings 0 0 STRING 0 strings -
+_GPIO 6 0 ABS 0 - build\picfix_508.o
+_TRIS 6 0 ABS 0 - build\picfix_508.o
+___sp 0 0 STACK 2 stack build\startup.o
+_main 28E 0 CODE 0 maintext build\picfix_508.o
+btemp 1C 0 ABS 0 - build\picfix_508.o
+___stack_hi 0 0 STACK 2 stack build\startup.o
+___stack_lo 0 0 STACK 2 stack build\startup.o
+__end_of_picfix_monitor_indicate 256 0 CODE 0 text2 build\picfix_508.o
+start 4 0 ENTRY 0 init build\startup.o
+__Hpowerup 0 0 CODE 0 powerup -
+___awmod@sign C 0 BANK0 1 cstackBANK0 build\picfix_508.o
+ttemp0 1C 0 ABS 0 - build\picfix_508.o
+entry__picfix_init 1C 0 ENTRY 0 jmp_tab build\picfix_508.o
+wtemp0 1C 0 ABS 0 - build\picfix_508.o
+wtemp1 1E 0 ABS 0 - build\picfix_508.o
+__Hfunctab 0 0 ENTRY 0 functab -
+__Hclrtext 18 0 ENTRY 0 clrtext -
+picfix_read_signal@sample1 8 0 BANK0 1 cstackBANK0 build\picfix_508.o
+picfix_read_signal@sample2 9 0 BANK0 1 cstackBANK0 build\picfix_508.o
+__pjmp_tab 18 0 ENTRY 0 jmp_tab build\picfix_508.o
+_error_timer_ms 13 0 BANK0 1 bssBANK0 build\picfix_508.o
+__Lmaintext 0 0 ABS 0 maintext -
+__end_of___awmod 3FE 0 CODE 0 text4 build\picfix_508.o
+___stackhi 0 0 ABS 0 - build\startup.o
+___stacklo 0 0 ABS 0 - build\startup.o
+__Hjmp_tab 0 0 ABS 0 jmp_tab -
+start_initialization 6 0 ENTRY 0 cinit build\picfix_508.o
+_OPTION 0 0 ABS 0 - build\picfix_508.o
+main@error_count 11 0 BANK0 1 cstackBANK0 build\picfix_508.o
+__pcstackBANK0 7 0 BANK0 1 cstackBANK0 build\picfix_508.o
+entry____awmod 1E 0 ENTRY 0 jmp_tab build\picfix_508.o
+_picfix_init 224 0 CODE 0 text3 build\picfix_508.o
+___int_sp 0 0 STACK 2 stack build\startup.o
+__Hbank0 0 0 ABS 0 bank0 -
+__Hcinit 18 0 ENTRY 0 cinit -
+__Hstack 0 0 STACK 2 stack -
+?_picfix_read_signal 7 0 BANK0 1 cstackBANK0 build\picfix_508.o
+__Hmaintext 0 0 ABS 0 maintext -
+__Hcommon 0 0 ABS 0 common -
+__Hconfig 2000 0 CONFIG 4 config -
+entry__picfix_monitor_indicate 1A 0 ENTRY 0 jmp_tab build\picfix_508.o
+__Lbank0 0 0 ABS 0 bank0 -
+__Lcinit 6 0 ENTRY 0 cinit -
+__Lstack 0 0 STACK 2 stack -
+__Habs1 0 0 ABS 0 abs1 -
+__Hcode 0 0 ABS 0 code -
+__Hheap 0 0 HEAP 7 heap -
+__Hinit 4 0 ENTRY 0 init -
+__Hsfr0 0 0 ABS 0 sfr0 -
+__Htext 0 0 ABS 0 text -
+__Labs1 0 0 ABS 0 abs1 -
+__Lcode 0 0 ABS 0 code -
+__Lheap 0 0 HEAP 7 heap -
+__Linit 4 0 ENTRY 0 init -
+__Lsfr0 0 0 ABS 0 sfr0 -
+__Ltext 0 0 ABS 0 text -
+__LcstackBANK0 0 0 ABS 0 cstackBANK0 -
+__HcstackCOMMON 0 0 ABS 0 cstackCOMMON -
+_GP0 30 0 ABS 0 - build\picfix_508.o
+_GP1 31 0 ABS 0 - build\picfix_508.o
+_GP3 33 0 ABS 0 - build\picfix_508.o
+__S0 1FF 0 ABS 0 - -
+__S1 19 0 ABS 0 - -
+_current_state 17 0 BANK0 1 bssBANK0 build\picfix_508.o
+reset_wrap 0 0 ENTRY 0 reset_wrap build\startup.o
+reset_vec 3FE 0 CODE 0 reset_vec build\startup.o
+__LbssBANK0 0 0 ABS 0 bssBANK0 -
+___awmod@counter B 0 BANK0 1 cstackBANK0 build\picfix_508.o
+___awmod 340 0 CODE 0 text4 build\picfix_508.o
+__pmaintext 28E 0 CODE 0 maintext build\picfix_508.o
+__Lcommon 0 0 ABS 0 common -
+__Lconfig 0 0 CONFIG 4 config -
+__end_of_picfix_read_signal 28E 0 CODE 0 text1 build\picfix_508.o
+main@i_50 F 0 BANK0 1 cstackBANK0 build\picfix_508.o
+main@j_51 10 0 BANK0 1 cstackBANK0 build\picfix_508.o
+_system_timer_ms 15 0 BANK0 1 bssBANK0 build\picfix_508.o
+__Lspace_0 0 0 ABS 0 - -
+__Lspace_1 0 0 ABS 0 - -
+__Lspace_2 0 0 ABS 0 - -
+__Lspace_4 0 0 ABS 0 - -
+__HcstackBANK0 0 0 ABS 0 cstackBANK0 -
+__Lend_init 4 0 ENTRY 0 end_init -
+__LcstackCOMMON 0 0 ABS 0 cstackCOMMON -
+_picfix_read_signal 256 0 CODE 0 text1 build\picfix_508.o
+end_of_initialization 14 0 ENTRY 0 cinit build\picfix_508.o
+__Lstrings 0 0 STRING 0 strings -
+?___awmod 7 0 BANK0 1 cstackBANK0 build\picfix_508.o
+__Hreset_vec 400 0 CODE 0 reset_vec -
+__HbssBANK0 0 0 ABS 0 bssBANK0 -
+___awmod@dividend 9 0 BANK0 1 cstackBANK0 build\picfix_508.o
+__ptext1 256 0 CODE 0 text1 build\picfix_508.o
+__ptext2 232 0 CODE 0 text2 build\picfix_508.o
+__ptext3 224 0 CODE 0 text3 build\picfix_508.o
+__ptext4 340 0 CODE 0 text4 build\picfix_508.o
+__end_of_picfix_init 232 0 CODE 0 text3 build\picfix_508.o
+__Lpowerup 0 0 CODE 0 powerup -
+__H__absolute__ 0 0 ABS 0 __absolute__ -
+__Lreset_vec 3FE 0 CODE 0 reset_vec -
+___heap_hi 0 0 ABS 0 - build\startup.o
+___heap_lo 0 0 ABS 0 - build\startup.o
+__end_of__initialization 14 0 ENTRY 0 cinit build\picfix_508.o
+___awmod@divisor 7 0 BANK0 1 cstackBANK0 build\picfix_508.o
+__Lfunctab 0 0 ENTRY 0 functab -
+__Lclrtext 18 0 ENTRY 0 clrtext -
+__pcstackCOMMON 0 0 COMMON 1 cstackCOMMON build\picfix_508.o
+__Hreset_wrap 4 0 ENTRY 0 reset_wrap -
+__Hend_init 6 0 ENTRY 0 end_init -
+__end_of_main 340 0 CODE 0 maintext build\picfix_508.o
+__Hram 0 0 ABS 0 ram -
+__Lram 0 0 ABS 0 ram -
+_picfix_read_signal$38 A 0 BANK0 1 cstackBANK0 build\picfix_508.o
+entry__picfix_read_signal 18 0 ENTRY 0 jmp_tab build\picfix_508.o
+__initialization 6 0 ENTRY 0 cinit build\picfix_508.o
+__pbssBANK0 13 0 BANK0 1 bssBANK0 build\picfix_508.o
+_counter 18 0 BANK0 1 bssBANK0 build\picfix_508.o
+__Ljmp_tab 0 0 ABS 0 jmp_tab -
+__Lreset_wrap 0 0 ENTRY 0 reset_wrap -
+___int_stack_hi 0 0 STACK 2 stack build\startup.o
+___int_stack_lo 0 0 STACK 2 stack build\startup.o
+# %SPLITSTAB Section
+# This section enumerates all the psect splits performed by the assembler.
+# The beginning of the section is indicated by %SPLITSTAB.
+# Each line is a record a particular split, where the parent psect is on
+# the left and the child on the right.  Note that a child psect is always
+# split form the top of the parent psect. All splits from a given parent
+# are listed in the order in which they occurred.
+%SPLITSTAB
+# %DABS Section
+# This section contains a table of all usuage of the assember
+# directive DABS in the program. Each line has the following format:
+#   <name> <space> <address> <size>
+# If the DABS was originally labelled then that shall be <name>,
+# otherwise name will be "-".  The <space> number is in decimal.
+# <address> and <size> are in byte units as unqaulified hexadecimal
+%DABS
+- 1 1C 4
+# %SEGMENTS Section
+# This sections enumerates the segments of the program.  Each segment
+# is described on a single line as follows:
+#    <name> <space> <link address> <file address> <size> <delta>
+# Addresses and size are in unqualified hexadecimal.  The link address
+# and size are in units of delta. The file address is in units of bytes.
+# All other numeric quantities are in decimal.
+%SEGMENTS
+text1 0 12B 256 1C 2
+text2 0 119 232 12 2
+text3 0 112 224 7 2
+text4 0 1A0 340 5F 2
+maintext 0 147 28E 59 2
+cstackBANK0 1 7 7 12 1
+reset_wrap 0 0 0 10 2
+reset_vec 0 1FF 3FE 1 2
+# %NOTES Section
+# This section contains data of all the note-psects.  The beginning of the section
+# is indicated by %NOTES. The first line indicates the name and decimal
+# byte-length of the first note-psect, e.g.
+#   $codecov_info_hdr 16
+# Each line that follows contains the byte-data of the psect in hexadecimal as a
+# space-separated list. These lines are limited to 16 bytes of data.
+%NOTES
