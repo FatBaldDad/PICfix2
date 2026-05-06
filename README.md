@@ -182,6 +182,19 @@ When the circuit is inactive, the transistor output stage should present a high-
 
 When the circuit is active, the NPN transistor pulls the IC403 `/RESET` signal low, similar to an open-collector switch.
 
+## Concept Test PCBs
+
+Shown below are the concept PCB designs that will be used for testing before the design is implemented into FCBs.
+
+### Top Side
+
+![PICfix2 concept PCB top](<FBD PS2 PICfix2 v0.0 (Top).png>)
+
+### Bottom Side
+
+![PICfix2 concept PCB bottom](<FBD PS2 PICfix2 v0.0 (Bottom).png>)
+
+
 ## Why Use an Open-Collector-Style Output?
 
 The original Matrix PICfix relies on the PIC output and a resistor value to interact with the console reset/shutdown path.
@@ -205,6 +218,22 @@ PICfix2 is intended to use the original Matrix PICfix firmware for the PIC12C508
 The goal is not to rewrite the crash-detection logic.
 
 The goal is to improve the output interface so the same PIC behavior can interact with the IC403 `/RESET` signal in a cleaner way.
+
+## Firmware / HEX Downloads
+
+The original Matrix PICfix firmware files are included here for convenience.
+
+- [Download MFIX_H8.HEX](https://github.com/FatBaldDad/PICfix2/raw/main/firmware/MFIX_H8.HEX)
+- [Download MFIX_H16.HEX](https://github.com/FatBaldDad/PICfix2/raw/main/firmware/MFIX_H16.HEX)
+
+### Firmware Notes
+
+`MFIX_H8.HEX` is the INHEX8 version, added for programmers that do not support INHEX16.
+
+`MFIX_H16.HEX` is the INHEX16 version.
+
+Use whichever format your PIC programmer supports.
+
 
 ## Installation Notes
 
