@@ -48,7 +48,7 @@ This makes the PICfix2 output behave more like an open-collector switch connecte
 
 ## Proof of Concept
 
-![PICfix2 proof-of-concept test on GH-022 board](images/picfix2-proof-of-concept-gh022.png)
+![PICfix2 proof-of-concept test on GH-022 board](./picfix2-proof-of-concept-gh022.png)
 
 > **Note:** This image shows a proof-of-concept test setup only.  
 > It is **not** the final PICfix2 PCB or final installation method.  
