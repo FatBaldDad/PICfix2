@@ -46,6 +46,15 @@ Instead of relying on the PIC output and series resistor as the direct reset pul
 
 This makes the PICfix2 output behave more like an open-collector switch connected to the existing IC403 `/RESET` signal.
 
+## Proof of Concept
+
+![PICfix2 proof-of-concept test on GH-022 board](images/picfix2-proof-of-concept-gh022.png)
+
+> **Note:** This image shows a proof-of-concept test setup only.  
+> It is **not** the final PICfix2 PCB or final installation method.  
+> The original PICfix board is being used with an added output inverter test circuit to evaluate the planned high-impedance/open-collector shutdown approach.
+>
+> 
 ## Important `/RESET` Signal Naming Note
 
 In this project, the shutdown signal used by PICfix2 should be referred to as the IC403 `/RESET` signal.
