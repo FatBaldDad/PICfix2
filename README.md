@@ -322,6 +322,6 @@ Credit and thanks to:
 
 - The Matrix Team for the original PICfix concept and firmware.
 - HaloSlayer255 for research into using PICfix-style protection on additional PS2 revisions.
-- ModzvilleUSA for testing, documentation, and practical install information.
+- ModzvilleUSA for testing, documentation, and practical install information.  (ModzvilleUSA also helped me out with a proto-type board during the concept phase of this project.)
 - Helder Game Tech for PICfix board work and community hardware support.
 - The wider PS2 repair and modding community for continued research into MechaCon / DSP crash behavior and laser-protection methods.
