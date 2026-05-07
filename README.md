@@ -26,25 +26,27 @@ The resistor value has to be chosen carefully so the PIC can pull the line down 
 
 PICfix2 changes the output stage.
 
-Instead of relying on the PIC output and series resistor as the direct reset pull-down path, PICfix2 uses an external transistor stage to create a high-impedance, open-collector-style output.
+Instead of relying on the PIC output and series resistor as the direct reset pull-down path, PICfix2 uses a 74LVC1G07 open-drain buffer to create a high-impedance, open-collector-style shutdown output.
+
+The 74LVC1G07 output does not drive the console `/RESET` line high. It only sinks the line low when the protection circuit is active. When inactive, the output is high-impedance and stays out of the console’s normal reset/shutdown behavior.
 
 ### Original PICfix Output Concept
 
 - PIC12C508 monitors the crash-detection signal.
 - When a crash is detected, the PIC output activates.
-- The PIC output pulls the console reset/shutdown sginal path to ground through a resistor on the output pin of the PIC.
+- The PIC output pulls the console reset/shutdown signal path to ground through a resistor on the output pin of the PIC.
 - Resistor value is critical because the circuit is connected directly to the console reset/shutdown signal.
 
 ### PICfix2 Output Concept
 
-- PIC12C508 keeps the same firmware and same monitoring behavior.
-- The PIC output is inverted externally.
-- When the PIC output becomes active-low, it turns on a PNP transistor.
-- The PNP transistor turns on an NPN transistor.
-- The NPN transistor sinks the IC403 `/RESET` signal to ground.
-- When inactive, the NPN is off and the IC403 `/RESET` signal sees a high-impedance connection.
+- PIC12C508 / PIC12F508 keeps the same firmware and same monitoring behavior.
+- The PIC output controls a 74LVC1G07 open-drain buffer.
+- A 47kΩ pull-up holds the 74LVC1G07 input high when the PIC output is inactive.
+- When the 74LVC1G07 input is high, the 74LVC1G07 output is high-impedance.
+- When the PIC output pulls low during a fault condition, the 74LVC1G07 output sinks the IC403 `/RESET` signal to ground.
+- When inactive, the IC403 `/RESET` signal is not actively driven or loaded by PICfix2.
 
-This makes the PICfix2 output behave more like an open-collector switch connected to the existing IC403 `/RESET` signal.
+This makes the PICfix2 output behave like an open-collector/open-drain shutdown switch connected to the existing IC403 `/RESET` signal.
 
 ## Proof of Concept
 
@@ -52,9 +54,8 @@ This makes the PICfix2 output behave more like an open-collector switch connecte
 
 > **Note:** This image shows a proof-of-concept test setup only.  
 > It is **not** the final PICfix2 PCB or final installation method.  
-> The original PICfix board is being used with an added output inverter test circuit to evaluate the planned high-impedance/open-collector shutdown approach.
->
-> 
+> The original PICfix board is being used with an added output-interface test circuit to evaluate the planned high-impedance/open-drain shutdown approach.
+
 ## Important `/RESET` Signal Naming Note
 
 In this project, the shutdown signal used by PICfix2 should be referred to as the IC403 `/RESET` signal.
@@ -90,9 +91,10 @@ PICfix2 is intended to be:
 
 - A drop-in conceptual replacement for the original PICfix output method.
 - Compatible with the original PIC12C508 firmware.
+- Compatible with the PIC12F508 when used as a suitable PIC12C508 replacement.
 - Electrically safer for the IC403 `/RESET` signal.
 - High impedance when inactive.
-- Open-collector-style when active.
+- Open-drain / open-collector-style when active.
 - Simple enough for hobbyists and console modders to build.
 - Focused only on laser protection, not extra features.
 
@@ -158,16 +160,16 @@ Basic signal flow:
 Original monitored signal
         |
         v
-PIC12C508 running Matrix PICfix firmware
+PIC12C508 / PIC12F508 running Matrix PICfix firmware
         |
         v
-Active-low PIC output
+Active-low PIC shutdown output
         |
         v
-PNP inverter / driver
+74LVC1G07 open-drain buffer input
         |
         v
-NPN open-collector-style pull-down
+74LVC1G07 open-drain output
         |
         v
 IC403 /RESET signal pulled to GND only during fault condition
@@ -176,15 +178,45 @@ IC403 /RESET signal pulled to GND only during fault condition
 MechaCon or SysCon reset/control path forces shutdown/reset
 ```
 
-The important difference is that the PIC is no longer treated as the direct pull-down device for the IC403 `/RESET` signal. Instead, the PIC controls a transistor output stage.
+The important difference is that the PIC is no longer treated as the direct pull-down device for the IC403 `/RESET` signal. Instead, the PIC controls a 74LVC1G07 open-drain buffer.
 
-When the circuit is inactive, the transistor output stage should present a high-impedance state to the IC403 `/RESET` signal.
+When the circuit is inactive, the 47kΩ pull-up holds the 74LVC1G07 input high. With the input high, the 74LVC1G07 output is off and presents a high-impedance state to the IC403 `/RESET` signal.
 
-When the circuit is active, the NPN transistor pulls the IC403 `/RESET` signal low, similar to an open-collector switch.
+When the circuit is active, the PIC output pulls the 74LVC1G07 input low. The 74LVC1G07 output then sinks the IC403 `/RESET` signal to ground, similar to an open-collector switch.
+
+## 74LVC1G07 Output Interface
+
+PICfix2 v1.0 replaces the earlier PNP/NPN inverter concept with a 74LVC1G07 open-drain buffer.
+
+This simplifies the output stage and better matches the design goal:
+
+- The buffer output can only pull low.
+- The buffer output cannot drive the IC403 `/RESET` signal high.
+- The inactive output state is high-impedance.
+- The console’s existing `/RESET` pull-up and reset-supervisor behavior remain in control.
+- The PIC output no longer directly loads the IC403 `/RESET` signal.
+
+### Input Pull-Up
+
+The 74LVC1G07 input uses a 47kΩ pull-up resistor.
+
+The purpose of this pull-up is to hold the buffer input high when the PIC output is inactive or not actively pulling low.
+
+When the input is held high, the open-drain output of the 74LVC1G07 is high-impedance.
+
+When the PIC pulls the input low during a fault condition, the 74LVC1G07 output pulls the IC403 `/RESET` signal low and forces the console into shutdown/reset.
+
+### Output Behavior
+
+| PIC / Buffer Input State | 74LVC1G07 Output State | IC403 `/RESET` Effect |
+|---|---|---|
+| Input high through 47kΩ pull-up | High-impedance | PICfix2 is inactive and does not load `/RESET` |
+| Input low from PIC fault output | Pulls low | IC403 `/RESET` is pulled to ground |
+| PIC unpowered / inactive | High-impedance, depending on board state and pull-up behavior | PICfix2 should remain out of the way |
 
 ## Concept Test PCBs
 
-Shown below are the concept PCB designs that will be used for testing before the design is implemented into FCBs.
+Shown below are the concept PCB designs that will be used for testing before the design is implemented into flex PCBs.
 
 ### Top Side
 
@@ -194,22 +226,23 @@ Shown below are the concept PCB designs that will be used for testing before the
 
 ![PICfix2 concept PCB bottom](<Images/v1.0/FBD PS2 PICfix2 v1.0 (Bottom).png>)
 
-
-## Why Use an Open-Collector-Style Output?
+## Why Use an Open-Drain / Open-Collector-Style Output?
 
 The original Matrix PICfix relies on the PIC output and a resistor value to interact with the console reset/shutdown path.
 
 That means the resistor has to be low enough to allow the PIC to shut the console down, but high enough to avoid disturbing the normal reset behavior.
 
-PICfix2 moves that job to a transistor stage.
+PICfix2 moves that job to an open-drain buffer stage.
 
 Advantages:
 
 - The PIC output is isolated from directly loading the IC403 `/RESET` signal.
-- The inactive state is high impedance.
-- The active state behaves like a controlled pull-down.
+- The inactive output state is high impedance.
+- The active output state behaves like a controlled pull-down.
+- The 74LVC1G07 cannot drive the console `/RESET` signal high.
 - The console’s existing reset/shutdown circuit remains in control during normal operation.
 - The original PICfix firmware behavior can be preserved.
+- The circuit is simpler and cleaner than the earlier PNP/NPN inverter concept.
 
 ## Firmware
 
@@ -219,12 +252,14 @@ The goal is not to rewrite the crash-detection logic.
 
 The goal is to improve the output interface so the same PIC behavior can interact with the IC403 `/RESET` signal in a cleaner way.
 
+A PIC12F508 may also be used as a practical flash-based replacement during development, provided the firmware and configuration are programmed correctly for the selected device.
+
 ## Firmware / HEX Downloads
 
 The original Matrix PICfix firmware files are included here for convenience.
 
-- [Download MFIX_H8.HEX](https://github.com/FatBaldDad/PICfix2/raw/main/firmware/MFIX_H8.HEX)
-- [Download MFIX_H16.HEX](https://github.com/FatBaldDad/PICfix2/raw/main/firmware/MFIX_H16.HEX)
+- [Download MFIX_H8.HEX](https://github.com/FatBaldDad/PICfix2/raw/main/Firmware/MFIX_H8.HEX)
+- [Download MFIX_H16.HEX](https://github.com/FatBaldDad/PICfix2/raw/main/Firmware/MFIX_H16.HEX)
 
 ### Firmware Notes
 
@@ -233,7 +268,6 @@ The original Matrix PICfix firmware files are included here for convenience.
 `MFIX_H16.HEX` is the INHEX16 version.
 
 Use whichever format your PIC programmer supports.
-
 
 ## Installation Notes
 
@@ -244,6 +278,7 @@ Before installing PICfix2:
 - Verify the exact motherboard revision.
 - Verify the correct monitored signal point for that board.
 - Verify the IC403 `/RESET` signal point for that board.
+- Verify the correct PIC output pin before connecting it to the 74LVC1G07 input.
 - Keep wiring short.
 - Route signal wires carefully.
 - Avoid running long reset or monitored-signal wires across noisy areas of the board.
@@ -269,7 +304,8 @@ Current focus:
 
 - Preserve original Matrix PICfix behavior.
 - Improve the IC403 `/RESET` signal interface.
-- Replace the low-impedance PIC/resistor output behavior with a high-impedance open-collector-style output.
+- Replace the low-impedance PIC/resistor output behavior with a high-impedance open-drain buffer output.
+- Use the 74LVC1G07GV,125 as the current v1.0 output-interface device.
 - Clarify board-revision differences.
 - Investigate v7 / v8 behavior separately.
 - Avoid changing the original purpose of PICfix.
