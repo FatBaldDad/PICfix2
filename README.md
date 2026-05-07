@@ -258,8 +258,12 @@ A PIC12F508 may also be used as a practical flash-based replacement during devel
 
 The original Matrix PICfix firmware files are included here for convenience.
 
-- [Download MFIX_H8.HEX](https://github.com/FatBaldDad/PICfix2/raw/main/Firmware/MFIX_H8.HEX)
-- [Download MFIX_H16.HEX](https://github.com/FatBaldDad/PICfix2/raw/main/Firmware/MFIX_H16.HEX)
+- [Download PICfix2 Matrix HEX Files ZIP](Firmware/PICfix2_Matrix_HEX_Files.zip)
+
+### Individual HEX Files
+
+- [MFIX H8.HEX](Firmware/MFIX%20H8.HEX)
+- [MFIX H16.HEX](Firmware/MFIX%20H16.HEX)
 
 ### Firmware Notes
 
