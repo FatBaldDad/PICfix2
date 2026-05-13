@@ -1,4 +1,4 @@
-# PICfix2
+# PS2 PICfix2
 
 PICfix2 is a modernized version of the classic PlayStation 2 Matrix PICfix circuit.
 
