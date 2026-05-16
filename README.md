@@ -325,3 +325,11 @@ Credit and thanks to:
 - ModzvilleUSA for testing, documentation, and practical install information.  (ModzvilleUSA also helped me out with a proto-type board during the concept phase of this project.)
 - Helder Game Tech for PICfix board work and community hardware support.
 - The wider PS2 repair and modding community for continued research into MechaCon / DSP crash behavior and laser-protection methods.
+
+## AI Assistance and Attribution Disclaimer
+
+This project uses AI tools to help with writing, organization, documentation, research, code examples, and design planning. While I review and edit the information, some details may still be incorrect, incomplete, or outdated.
+
+Not all ideas, code, research, methods, or technical information in this project should be credited only to me. This project may reference, build on, or be inspired by community knowledge, open-source projects, datasheets, forum posts, Discord discussions, manufacturer documentation, and the work of other developers and modders.
+
+Credit will be given whenever a source is known. If something is missing credit or needs correction, please let me know so I can update the documentation.
